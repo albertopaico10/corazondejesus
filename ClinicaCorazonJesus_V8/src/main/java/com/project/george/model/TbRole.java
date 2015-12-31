@@ -20,9 +20,9 @@ public class TbRole implements Serializable {
 	private String nombreRole;
 
 	private int status;
-	//bi-directional many-to-one association to TbUser
-	@OneToMany(mappedBy="tbRole")
-	private List<TbUser> tbUsers;
+//	//bi-directional many-to-one association to TbUser
+//	@OneToMany(mappedBy="tbRole")
+//	private List<TbUser> tbUsers;
 
 	public TbRole() {
 	}
@@ -51,11 +51,11 @@ public class TbRole implements Serializable {
 		this.status = status;
 	}
 
-	public List<TbUser> getTbUsers() {
-		return this.tbUsers;
-	}
-
-	public void setTbUsers(List<TbUser> tbUsers) {
-		this.tbUsers = tbUsers;
-	}
+//	public List<TbUser> getTbUsers() {
+//		return this.tbUsers;
+//	}
+//
+//	public void setTbUsers(List<TbUser> tbUsers) {
+//		this.tbUsers = tbUsers;
+//	}
 }

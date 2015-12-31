@@ -48,24 +48,14 @@ public class TbKardex implements Serializable {
 	private BigDecimal priceTotalSale;
 
 	private int status;
+	
+	private int idProduct;
 
 	@Column(name="total_egress")
 	private int totalEgress;
 
 	@Column(name="total_entry")
 	private int totalEntry;
-
-	//bi-directional many-to-one association to TbDetailKardex
-//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="tbKardex")
-//	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name="idKardex")
-	private Set<TbDetailKardex> tbDetailKardexs;
-
-	//bi-directional many-to-one association to TbProduct
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="idProduct", nullable = false)
-	private TbProduct tbProduct;
 
 	public TbKardex() {
 	}
@@ -134,39 +124,6 @@ public class TbKardex implements Serializable {
 		this.totalEntry = totalEntry;
 	}
 
-	public Set<TbDetailKardex> getTbDetailKardexs() {
-		return this.tbDetailKardexs;
-	}
-
-	public void setTbDetailKardexs(Set<TbDetailKardex> tbDetailKardexs) {
-		this.tbDetailKardexs = tbDetailKardexs;
-		for(TbDetailKardex detailKardex:tbDetailKardexs){
-			detailKardex.setTbKardex(this);
-		}
-	}
-
-	public TbDetailKardex addTbDetailKardex(TbDetailKardex tbDetailKardex) {
-		getTbDetailKardexs().add(tbDetailKardex);
-		tbDetailKardex.setTbKardex(this);
-
-		return tbDetailKardex;
-	}
-
-	public TbDetailKardex removeTbDetailKardex(TbDetailKardex tbDetailKardex) {
-		getTbDetailKardexs().remove(tbDetailKardex);
-		tbDetailKardex.setTbKardex(null);
-
-		return tbDetailKardex;
-	}
-
-	public TbProduct getTbProduct() {
-		return this.tbProduct;
-	}
-
-	public void setTbProduct(TbProduct tbProduct) {
-		this.tbProduct = tbProduct;
-	}
-
 	public BigDecimal getPriceTotalProduct() {
 		return priceTotalProduct;
 	}
@@ -181,5 +138,13 @@ public class TbKardex implements Serializable {
 
 	public void setPriceTotalSale(BigDecimal priceTotalSale) {
 		this.priceTotalSale = priceTotalSale;
+	}
+
+	public int getIdProduct() {
+		return idProduct;
+	}
+
+	public void setIdProduct(int idProduct) {
+		this.idProduct = idProduct;
 	}
 }

@@ -22,9 +22,9 @@ public class TbArea implements Serializable {
 
 	private int status;
 
-	//bi-directional many-to-one association to TbPatient
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="tbArea")
-	private List<TbPatient> tbPatients;
+//	//bi-directional many-to-one association to TbPatient
+//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="tbArea")
+//	private List<TbPatient> tbPatients;
 
 	public TbArea() {
 	}
@@ -53,26 +53,26 @@ public class TbArea implements Serializable {
 		this.status = status;
 	}
 
-	public List<TbPatient> getTbPatients() {
-		return this.tbPatients;
-	}
+//	public List<TbPatient> getTbPatients() {
+//		return this.tbPatients;
+//	}
+//
+//	public void setTbPatients(List<TbPatient> tbPatients) {
+//		this.tbPatients = tbPatients;
+//	}
 
-	public void setTbPatients(List<TbPatient> tbPatients) {
-		this.tbPatients = tbPatients;
-	}
-
-	public TbPatient addTbPatient(TbPatient tbPatient) {
-		getTbPatients().add(tbPatient);
-		tbPatient.setTbArea(this);
-
-		return tbPatient;
-	}
-
-	public TbPatient removeTbPatient(TbPatient tbPatient) {
-		getTbPatients().remove(tbPatient);
-		tbPatient.setTbArea(null);
-
-		return tbPatient;
-	}
+//	public TbPatient addTbPatient(TbPatient tbPatient) {
+//		getTbPatients().add(tbPatient);
+//		tbPatient.setTbArea(this);
+//
+//		return tbPatient;
+//	}
+//
+//	public TbPatient removeTbPatient(TbPatient tbPatient) {
+//		getTbPatients().remove(tbPatient);
+//		tbPatient.setTbArea(null);
+//
+//		return tbPatient;
+//	}
 
 }

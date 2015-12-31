@@ -1,8 +1,12 @@
 <%@ include file="/WEB-INF/common/taglib.jsp"%>
  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/commons.css"></link>
+ 
+ <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+ <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+ <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+ 
 <header>
 <div class="container">
 	<br>
@@ -14,7 +18,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<form action="findPatientSpecific.htm" method="POST">
+		<form id="idFindPatient" action="findPatientSpecific.htm" method="POST">
 			<div id="divFormDiv" class="formDiv">
 				<input id="lastName" name="lastName" placeholder="Apellido" title="Apellido" type="text" value="" size="40"/>
 			</div>
@@ -24,7 +28,7 @@
 			</div>
 			<br>
 			<div id="divFormDiv" class="formDiv">
-				<input id="submit" name="submit" type="submit" value="Buscar">
+				<input id="submit" name="submit" onclick="$('#contenedor').css('visibility','')" type="submit" value="Buscar">
 			</div>
 		</form>	
 	</div>
@@ -41,13 +45,8 @@
 	</div>
 	<c:if test="${listPatient!=null}">
 	<div class="row">
-		<div class="col-lg-4 col-lg-offset-4">
-			<input type="search" id="search" value="" class="form-control" placeholder="Introduce un criterio de busqueda">
-		</div>
-	</div>
-	<div class="row">
 		<div class="col-lg-12">
-			<table class="table" id="table">
+			<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="table">
 				<thead>
 					<tr>
 						<th ><spring:message code="maintenance.generic.table.id" /></th>
@@ -89,7 +88,7 @@
 						<td class="tdDatatable">${listPatientData.nameReference}</td>
 						<td class="tdDatatable">${listPatientData.phoneReference}</td>
 						<td class="tdDatatable"><a id="linkID" href="javascript:updatePatient('${listPatientData.id}','${listPatientData.namePatient}','${listPatientData.lastNamePatient}','${listPatientData.dni}','${listPatientData.codeHistoryClinic}','${listPatientData.address}','${listPatientData.districtName}','${listPatientData.idSexo}','${listPatientData.nameReference}','${listPatientData.phoneReference}','${listPatientData.birthDayFormat}')"><img src="${pageContext.request.contextPath}/resources/images/edit_icon.png" alt="HTML tutorial" style="width:20px;height:20px;border:0"></a></td>
-						<td class="tdDatatable"><a id="linkID_delete" class="confirm-delete" data-id="${listPatientData.id}" href="#"><img src="${pageContext.request.contextPath}/resources/images/delete_icon.png" alt="HTML tutorial" style="width:24px;height:24px;border:0"></a></td>
+						<td class="tdDatatable"><a id="linkID_delete" class="confirm-delete" href="javascript:showDeletePatient('${listPatientData.id}')"><img src="${pageContext.request.contextPath}/resources/images/delete_icon.png" alt="HTML tutorial" style="width:24px;height:24px;border:0"></a></td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -225,6 +224,9 @@
 		    </div>
 		    <div class="modal-body">
 		        <p><spring:message code="confirm.option.messages.delete.patient" /></p>
+		        <div style="display: none">
+		        	<p><input id="idPatient" type="text" value=""/></p>
+		        </div>
 		    </div>
 		    <div class="modal-footer">
 		      <a href="javascript:deletePantient()" id="btnYes" class="btn danger btn-primary btn-large confirModal">Yes</a>
@@ -233,9 +235,15 @@
 	    </div>
     </div>
 </div>
+
+
+
+
 <script>
+
 $(document).ready(function() {
-	
+	 $('#table').DataTable();
+	 $("#contenedor").css("visibility","hidden");
 // 	$( "#birthDay").datepicker();
 		
 	$("#idMaintenancePatientForm").validate({
@@ -285,6 +293,8 @@ $(document).ready(function() {
         }
 	});
 }); 
+
+
 $("#new_patient" ).click(function( event ) {
 	$('#frmMaintenancePatient').modal('show');
 	$( "#namePatient" ).val("");
@@ -358,8 +368,14 @@ function updatePatient(idPatient,namePatient,lastNamePatient,dni,historyClinic,a
 	$("#divIdPatient").append('<input id="idPatient" name="id" type="hidden" value="'+idPatient+'"/>');
 }
 
+function showDeletePatient(idPatient) {
+    $('#modalConfirm').modal('show');
+    $('#idPatient').val(idPatient);
+}
+
+
 function deletePantient() {
-    var id = $('#modalConfirm').data('id');
+    var id =  $('#idPatient').val();
     document.location="${pageContext.request.contextPath}/deleteMaintenancePatient.htm?idPatient="+id;
     $('#modalConfirm').modal('hide');
 }

@@ -44,7 +44,7 @@ public class TableDetailKardexDaoImpl implements TableDetailKardexDao {
 		// transaction.commit();
 
 		String sql = "insert into Tb_detail_Kardex (id,idKardex,cantidad,typeOperation,comprobante_clase,comprobante_number,status,price_Product,price_sale) values ('0','"
-				+ tbDetailKardexBean.getTbKardex().getId()
+				+ tbDetailKardexBean.getIdKardex()
 				+ "','"
 				+ tbDetailKardexBean.getCantidad()
 				+ "','"

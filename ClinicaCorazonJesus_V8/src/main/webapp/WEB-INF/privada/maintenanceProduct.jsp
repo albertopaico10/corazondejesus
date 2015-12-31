@@ -84,7 +84,7 @@
 					</div>
 					<div id="divFormDiv" class="formDiv">
 						<label for="userName" class="labelForm"><spring:message code="maintenance.product.presentation" /></label>
-						<html:select path="tbPresentation.id" id="tbPresentation.id">
+						<html:select path="idPresentation" id="idPresentation">
 							<html:option value="0">
 								<spring:message code="maintenance.product.option.0"/>
 							</html:option>
@@ -134,7 +134,6 @@
 	    </div>
     </div>
 </div>
-
 <script>
 $(document).ready(function() {
 	$( "#expirationDate").datepicker();

@@ -39,16 +39,8 @@ public class TbProduct implements Serializable {
 	private BigDecimal price_sale;
 	
 	private int status;
-
-	//bi-directional many-to-one association to TbKardex
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="tbProduct")
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private Set<TbKardex> tbKardexs;
-
-	//bi-directional many-to-one association to TbPresentation
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="idPresentation", nullable = false)
-	private TbPresentation tbPresentation;
+	
+	private int idPresentation;
 
 	public TbProduct() {
 	}
@@ -101,36 +93,6 @@ public class TbProduct implements Serializable {
 		this.status = status;
 	}
 
-	public Set<TbKardex> getTbKardexs() {
-		return this.tbKardexs;
-	}
-
-	public void setTbKardexs(Set<TbKardex> tbKardexs) {
-		this.tbKardexs = tbKardexs;
-	}
-
-	public TbKardex addTbKardex(TbKardex tbKardex) {
-		getTbKardexs().add(tbKardex);
-		tbKardex.setTbProduct(this);
-
-		return tbKardex;
-	}
-
-	public TbKardex removeTbKardex(TbKardex tbKardex) {
-		getTbKardexs().remove(tbKardex);
-		tbKardex.setTbProduct(null);
-
-		return tbKardex;
-	}
-
-	public TbPresentation getTbPresentation() {
-		return this.tbPresentation;
-	}
-
-	public void setTbPresentation(TbPresentation tbPresentation) {
-		this.tbPresentation = tbPresentation;
-	}
-
 	public Date getExpirationDate() {
 		return expirationDate;
 	}
@@ -138,4 +100,13 @@ public class TbProduct implements Serializable {
 	public void setExpirationDate(Date expirationDate) {
 		this.expirationDate = expirationDate;
 	}
+
+	public int getIdPresentation() {
+		return idPresentation;
+	}
+
+	public void setIdPresentation(int idPresentation) {
+		this.idPresentation = idPresentation;
+	}
+	
 }

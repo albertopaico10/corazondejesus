@@ -32,16 +32,12 @@ public class TbDetailKardex implements Serializable {
 	private String comprobante_number;
 
 	private int status;
+	
+	private int idKardex;
 
 	private BigDecimal price_Product;
 
 	private BigDecimal price_sale;
-
-	// bi-directional many-to-one association to TbKardex
-	// @ManyToOne(fetch=FetchType.EAGER)
-	@ManyToOne
-	@JoinColumn(name = "idKardex")
-	private TbKardex tbKardex;
 
 	public TbDetailKardex() {
 	}
@@ -85,8 +81,6 @@ public class TbDetailKardex implements Serializable {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	
 
 	public BigDecimal getPrice_Product() {
 		return price_Product;
@@ -112,28 +106,20 @@ public class TbDetailKardex implements Serializable {
 		this.comprobante_clase = comprobante_clase;
 	}
 
-//	public int getComprobante_number() {
-//		return comprobante_number;
-//	}
-//
-//	public void setComprobante_number(int comprobante_number) {
-//		this.comprobante_number = comprobante_number;
-//	}
-
-	public TbKardex getTbKardex() {
-		return this.tbKardex;
-	}
-
-	public void setTbKardex(TbKardex tbKardex) {
-		this.tbKardex = tbKardex;
-	}
-
 	public String getComprobante_number() {
 		return comprobante_number;
 	}
 
 	public void setComprobante_number(String comprobante_number) {
 		this.comprobante_number = comprobante_number;
+	}
+
+	public int getIdKardex() {
+		return idKardex;
+	}
+
+	public void setIdKardex(int idKardex) {
+		this.idKardex = idKardex;
 	}
 	
 }

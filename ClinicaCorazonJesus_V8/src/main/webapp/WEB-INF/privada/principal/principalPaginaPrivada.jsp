@@ -26,6 +26,13 @@
 	<link href="${pageContext.request.contextPath}/resources/bootstrap/css/simple-sidebar.css" rel="stylesheet"></link>
 </head>
 <body>
+	<div id="contenedor">
+		<div class="spinner">
+		  <div class="bounce1"></div>
+		  <div class="bounce2"></div>
+		  <div class="bounce3"></div>
+		</div>
+	</div>
 	<div id="master">
 		
 		<div class="body">

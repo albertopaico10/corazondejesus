@@ -9,7 +9,7 @@ public class TbDetailKardexDTO {
 	public int cantidad;
 	public String typeOperation;
 	public String comprobanteClase;
-	public int comprobanteNumero;
+	public String comprobanteNumero;
 	public BigDecimal priceProduct;
 	public BigDecimal priceSale;
 	public Timestamp dateCreated;
@@ -37,11 +37,10 @@ public class TbDetailKardexDTO {
 	public void setComprobanteClase(String comprobanteClase) {
 		this.comprobanteClase = comprobanteClase;
 	}
-	
-	public int getComprobanteNumero() {
+	public String getComprobanteNumero() {
 		return comprobanteNumero;
 	}
-	public void setComprobanteNumero(int comprobanteNumero) {
+	public void setComprobanteNumero(String comprobanteNumero) {
 		this.comprobanteNumero = comprobanteNumero;
 	}
 	public BigDecimal getPriceProduct() {

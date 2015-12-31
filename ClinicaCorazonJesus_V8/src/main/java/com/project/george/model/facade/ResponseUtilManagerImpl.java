@@ -93,6 +93,60 @@ public class ResponseUtilManagerImpl implements ResponseUtilManager {
 		return responseDetailKardex.toString();
 	}
 	
+//	public String responsesDetailKardex(List<TbDetailKardexDTO> beanKardexDTO)throws Exception {
+//		StringBuilder responseDetailKardex= new StringBuilder();
+//		responseDetailKardex.append("<div id='idTitleList'><label class='titlePage'>Detalle del Kardex</label></div>");
+//		responseDetailKardex.append("<div class='row'>");
+//		responseDetailKardex.append("<div class='col-lg-12'>");
+//		responseDetailKardex.append("<table  class='table' border='1'>");
+//		responseDetailKardex.append("<thead>");
+//		responseDetailKardex.append("<tr");
+//		responseDetailKardex.append("<th >ID</th>");
+//		responseDetailKardex.append("<th >Cantidad</th>");
+//		responseDetailKardex.append("<th >Tipo Operacion</th>");
+//		responseDetailKardex.append("<th >Fecha</th>");
+//		responseDetailKardex.append("<th >Comprobante clase</th>");
+//		responseDetailKardex.append("<th >Comprobante numero</th>");
+//		responseDetailKardex.append("<th >Venta Diaria</th>");
+//		responseDetailKardex.append("</thead>");
+//		responseDetailKardex.append("<tbody>");
+//		responseDetailKardex.append("</tr>");
+//		for(TbDetailKardexDTO beanDetailForm : beanKardexDTO){
+//			responseDetailKardex.append("<tr>");
+//			String classTable=CommonUtil.classTable;
+//			if("1".equals(beanDetailForm.getTypeOperation())){
+//				classTable=CommonUtil.classTableRed;
+//			}
+//			else{
+//				classTable=CommonUtil.classTableBlue;
+//			}
+//			responseDetailKardex.append("<td class='"+classTable+"'>"+beanDetailForm.getId()+"</td>");
+//			responseDetailKardex.append("<td class='"+classTable+"'>"+beanDetailForm.getCantidad()+"</td>");
+//			if("1".equals(beanDetailForm.getTypeOperation())){
+//				responseDetailKardex.append("<td class='"+classTable+"'>Entrada</td>");
+//			}
+//			else{
+//				responseDetailKardex.append("<td class='"+classTable+"'>Salida</td>");
+//			}
+//			responseDetailKardex.append("<td class='"+classTable+"'>"+beanDetailForm.getDateCreated()+"</td>");
+//			responseDetailKardex.append("<td class='"+classTable+"'>"+beanDetailForm.getComprobanteClase()+"</td>");
+//			responseDetailKardex.append("<td class='"+classTable+"'>"+beanDetailForm.getComprobanteNumero()+"</td>");			
+//			if(!"1".equals(beanDetailForm.getTypeOperation())){
+//				responseDetailKardex.append("<td class='"+classTable+"'>"+beanDetailForm.getPriceSale().multiply(new BigDecimal(beanDetailForm.getCantidad()))+"</td>");
+//			}else{
+//				responseDetailKardex.append("<td class='"+classTable+"'>"+beanDetailForm.getPriceProduct().multiply(new BigDecimal(beanDetailForm.getCantidad()))+"</td>");
+//			}
+//			
+//			responseDetailKardex.append("</tr>");
+//		}
+//		
+//		responseDetailKardex.append("</tbody>");
+//		responseDetailKardex.append("</table>");
+//		responseDetailKardex.append("</div>");
+//		responseDetailKardex.append("</div>");
+//		return responseDetailKardex.toString();
+//	}
+	
 //	public String responsesDetailKardex(List<TbKardexDTO> beanKardexDTO)throws Exception {
 //		
 //	}

@@ -32,7 +32,7 @@ public class UtilMethods {
 	public TbDetailKardexDTO copyValuesTbDetailKardexDTO(TbDetailKardex beanFrom,TbDetailKardexDTO beanTo){
 		beanTo.setId(beanFrom.getId());
 		beanTo.setComprobanteClase(beanFrom.getComprobante_clase());
-//		beanTo.setComprobanteNumero(beanFrom.getComprobante_number());
+		beanTo.setComprobanteNumero(beanFrom.getComprobante_number());
 		beanTo.setCantidad(beanFrom.getCantidad());
 		beanTo.setTypeOperation(beanFrom.getTypeOperation());
 		beanTo.setPriceProduct(beanFrom.getPrice_Product());
@@ -41,25 +41,25 @@ public class UtilMethods {
 		return beanTo;
 	}
 	
-	public TbKardexDTO copyValuesTbKardexDTO(TbKardex beanFrom,TbKardexDTO beanTo){
+	public TbKardexDTO copyValuesTbKardexDTO(TbKardex beanFrom,TbKardexDTO beanTo,TbProduct beanProduct,TbPresentation beanPresentation){
 		beanTo.setId(beanFrom.getId());
 		beanTo.setCountProduct(beanFrom.getCountProduct());
 		beanTo.setTotalEgress(beanFrom.getTotalEgress());
 		beanTo.setTotalEntry(beanFrom.getTotalEntry());
-		beanTo.setNameProduct(beanFrom.getTbProduct().getNameProduct());
-		beanTo.setNamePresentation(beanFrom.getTbProduct().getTbPresentation().getNamePresentation());
-		beanTo.setIdProduct(beanFrom.getTbProduct().getId());
+		beanTo.setNameProduct(beanProduct.getNameProduct());
+		beanTo.setNamePresentation(beanPresentation.getNamePresentation());
+		beanTo.setIdProduct(beanProduct.getId());
 		beanTo.setPriceTotalProduct(beanFrom.getPriceTotalProduct());
 		beanTo.setPriceTotalSale(beanFrom.getPriceTotalSale());
 		return beanTo;
 	}
 	
-	public TbProductDTO copyValuesTypeProductDTO(TbProduct beanFrom,TbProductDTO beanTo){
+	public TbProductDTO copyValuesTypeProductDTO(TbProduct beanFrom,TbProductDTO beanTo,TbPresentation beanPresentation){
 		beanTo.setId(beanFrom.getId());
 		beanTo.setNameProduct(beanFrom.getNameProduct());
 		beanTo.setStatus(beanFrom.getStatus());
-		beanTo.setNamePresentation(beanFrom.getTbPresentation().getNamePresentation());
-		beanTo.setIdPresentation(beanFrom.getTbPresentation().getId());
+		beanTo.setNamePresentation(beanPresentation.getNamePresentation());
+		beanTo.setIdPresentation(beanPresentation.getId());
 		beanTo.setPrice(beanFrom.getPrice_Product());
 		beanTo.setPriceSale(beanFrom.getPrice_sale());
 		beanTo.setExpirationDate(convertFormatString(beanFrom.getExpirationDate(), CommonUtil.FormatDate.MM_DD_YYYY));

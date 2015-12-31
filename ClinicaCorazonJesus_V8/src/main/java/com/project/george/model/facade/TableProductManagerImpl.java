@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.george.common.CommonUtil;
 import com.project.george.common.UtilMethods;
+import com.project.george.model.TbPresentation;
 import com.project.george.model.TbProduct;
+import com.project.george.model.dao.TablePresentationDao;
 import com.project.george.model.dao.TableProductDao;
 import com.project.george.model.dto.TbProductDTO;
 
@@ -18,6 +20,8 @@ import com.project.george.model.dto.TbProductDTO;
 public class TableProductManagerImpl implements TableProductManager {
 	@Autowired
 	TableProductDao customTableTypeProduct;
+	@Autowired
+	TablePresentationDao customTablePresentation;
 	
 	public List<TbProductDTO> listSpecificProduct(String nameProduct)
 			throws Exception {
@@ -27,8 +31,10 @@ public class TableProductManagerImpl implements TableProductManager {
 		
 		UtilMethods utilMethods=new UtilMethods();
 		for (TbProduct beanTableDB:listAllData) {
+			//--Call Presentation
+			TbPresentation beanPresentation=customTablePresentation.beanPresentationSpecific(beanTableDB.getIdPresentation());
 			TbProductDTO beanDTO=new TbProductDTO();
-			beanDTO=utilMethods.copyValuesTypeProductDTO(beanTableDB, beanDTO);
+			beanDTO=utilMethods.copyValuesTypeProductDTO(beanTableDB, beanDTO,beanPresentation);
 			newListAll.add(beanDTO);
 		}
 		if(newListAll.size()==0){
@@ -39,7 +45,7 @@ public class TableProductManagerImpl implements TableProductManager {
 	}
 		
 	public List<TbProductDTO> listAllTypeProduct() throws Exception {
-		System.out.println("Inside listAllPresentation");
+		System.out.println("Inside listAllTypeProduct");
 		List<TbProduct> listAllData=customTableTypeProduct.listAllTypeProduct();
 		
 		List<TbProductDTO> newListAll=new ArrayList<TbProductDTO>();
@@ -47,8 +53,10 @@ public class TableProductManagerImpl implements TableProductManager {
 		UtilMethods utilMethods=new UtilMethods();
 		
 		for (TbProduct beanTableDB:listAllData) {
+			//--Call Presentation
+			TbPresentation beanPresentation=customTablePresentation.beanPresentationSpecific(beanTableDB.getIdPresentation());
 			TbProductDTO beanDTO=new TbProductDTO();
-			beanDTO=utilMethods.copyValuesTypeProductDTO(beanTableDB, beanDTO);
+			beanDTO=utilMethods.copyValuesTypeProductDTO(beanTableDB, beanDTO,beanPresentation);
 			newListAll.add(beanDTO);
 		}
 		if(newListAll.size()==0){

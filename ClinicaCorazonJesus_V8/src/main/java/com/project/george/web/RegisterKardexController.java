@@ -89,6 +89,30 @@ public class RegisterKardexController {
 		return new ModelAndView(returnRsponse);
 	}
 	
+//	@RequestMapping(value = "/listKardexByProduct.htm", method = RequestMethod.GET)
+//    public @ResponseBody String listKardexByProduct (HttpServletRequest request,
+//			HttpServletResponse response,final ModelMap model) {
+//		System.out.println("inside findProduct htm");		
+//		String returnRsponse=CommonUtil.RegisterKardex.RESPONSES_REGISTER_KARDEX;
+//		final String nameProduct = String.valueOf(request.getParameter("nameProduct"));
+//		final String productId = String.valueOf(request.getParameter("productId"));
+//		System.out.println("Request Parameter : "+nameProduct);
+//		try {
+//			List<TbProductDTO> listAllProduct=tableProduct.listSpecificProduct(nameProduct);
+//			System.out.println("Cantidad de filas que trae :"+listAllProduct.size());
+//			request.setAttribute("listProduct", listAllProduct);
+//			request.setAttribute("nameProduct", nameProduct);
+//			request.setAttribute("productId", productId);
+//			List<TbKardexDTO> listKardexByProduct = tableKardexManager.listKardexByProduct(Integer.parseInt(productId));
+//			request.setAttribute("listKardex", listKardexByProduct);
+//			request.setAttribute("valueKardexList", "1");
+//		} catch (Exception e) {
+//			System.out.println("Error : "+e.toString());
+//		}
+//		
+//		return "";
+//	}
+	
 	@RequestMapping("saveKardexByProduct.htm")
     public ModelAndView saveKardexByProduct (HttpServletRequest request,
 			HttpServletResponse response,final ModelMap model) {

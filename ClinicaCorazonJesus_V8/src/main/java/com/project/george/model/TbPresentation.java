@@ -31,10 +31,10 @@ public class TbPresentation implements Serializable {
 
 	private int status;
 
-	//bi-directional many-to-one association to TbProduct
-	@OneToMany(fetch = FetchType.LAZY,  mappedBy="tbPresentation")
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<TbProduct> tbProducts;
+//	//bi-directional many-to-one association to TbProduct
+//	@OneToMany(fetch = FetchType.LAZY,  mappedBy="tbPresentation")
+//	@LazyCollection(LazyCollectionOption.FALSE)
+//	private List<TbProduct> tbProducts;
 
 	public TbPresentation() {
 	}
@@ -71,26 +71,26 @@ public class TbPresentation implements Serializable {
 		this.status = status;
 	}
 
-	public List<TbProduct> getTbProducts() {
-		return this.tbProducts;
-	}
+//	public List<TbProduct> getTbProducts() {
+//		return this.tbProducts;
+//	}
+//
+//	public void setTbProducts(List<TbProduct> tbProducts) {
+//		this.tbProducts = tbProducts;
+//	}
 
-	public void setTbProducts(List<TbProduct> tbProducts) {
-		this.tbProducts = tbProducts;
-	}
-
-	public TbProduct addTbProduct(TbProduct tbProduct) {
-		getTbProducts().add(tbProduct);
-		tbProduct.setTbPresentation(this);
-
-		return tbProduct;
-	}
-
-	public TbProduct removeTbProduct(TbProduct tbProduct) {
-		getTbProducts().remove(tbProduct);
-		tbProduct.setTbPresentation(null);
-
-		return tbProduct;
-	}
+//	public TbProduct addTbProduct(TbProduct tbProduct) {
+//		getTbProducts().add(tbProduct);
+//		tbProduct.setTbPresentation(this);
+//
+//		return tbProduct;
+//	}
+//
+//	public TbProduct removeTbProduct(TbProduct tbProduct) {
+//		getTbProducts().remove(tbProduct);
+//		tbProduct.setTbPresentation(null);
+//
+//		return tbProduct;
+//	}
 
 }

@@ -1,101 +1,31 @@
 <%@ include file="/WEB-INF/common/taglib.jsp"%>
-<div id="idDetailKardex" style="display: none" title="<spring:message code="show.detail.title.detail.kardex"/>">
-	<div id='idTitleListDetail'>
-		<label class="titlePage"><spring:message code="kardex.title" /></label>
-	</div>
-	<br/>
-	<table>
-		<tr>
-			<td><div id="idNameProductDetail"></div></td>
-			<td><div id="idCountProductTotal"></div></td>
-		</tr>
-		<tr>
-			<td><div id="idSpanPriceTotalProduct"></div></td>
-			<td><div id="idSpanPriceTotalSale"></div></td>
-		</tr>
-	</table>
-	<div id="idDetailKardexData"></div>
-</div>
-<div id="frmRegisterKardex" style="display: none" title="<spring:message code="register.kardex.title"/>">
-	<div id="typeMessagesFormKardex" class="lblmessagesred"></div>
-	<form id="idRegisterKardexForm">
-		<div id="divFormDiv" class="formDiv">
-			<table>
-				<tr>
-					<td><label class="labelForm"><spring:message code="register.kardex.type.operation" /></label></td>
-					<td>
-						<select id="idTypeOperation">
-							<option value="1"><spring:message code="register.kardex.type.operation.entry" />
-							<option value="2"><spring:message code="register.kardex.type.operation.egress" />
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div id="lblTypeOperation">
-							<label class="labelForm"><spring:message code="register.kardex.type.operation" /></label>
-						</div>
-					</td>
-					<td><input type="text" id="idCantidad" name="idCantidad"/></td>
-				</tr>
-				<tr>
-					<td>
-						<label class="labelForm"><spring:message code="register.kardex.comprobante.class" /></label>
-					</td>
-					<td>
-						<div id="idSelectEntrada" style="display: none">
-							<select id="idComprobanteClassEntrada">
-								<option value="Boleta Venta">Boleta Venta</option>
-								<option value="Factura">Factura</option>
-							</select>
-						</div>
-						<div id="idSelectSalida" style="display: none">
-							<select id="idComprobanteClassSalida">
-								<option value="Boleta Venta">Boleta Venta</option>
-								<option value="Informe">Informe</option>
-							</select>
-						</div>
-<!-- 						<input type="text" id="idComprobanteClass" name="idComprobanteClass"/> -->
-					</td>
-				</tr>
-				<tr>
-					<td><label class="labelForm"><spring:message code="register.kardex.comprobante.number" /></label></td>
-					<td><input type="text" id="idComprobanteNumber" name="idComprobanteNumber"/></td>
-				</tr>
-				<tr>
-					<td><label class="labelForm"><spring:message code="register.kardex.comprobante.ticketNumber" /></label></td>
-					<td><input type="text" id="idComprobanteNumber" name="idComprobanteNumber"/></td>
-				</tr>
-				<tr>
-					<td>
-						<input type="hidden" id="idProductKardex" /> 
-						<input type="hidden" id="idDetailNameKardex" />
-						<input type="hidden" id="idKardexMaster"/>
-					</td>
-				</tr>
-			</table>
-
-
+ <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+ <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+ <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/commons.css"></link>
+ 
+<header>
+<div class="container">
+	<br>
+	<br>
+	<br>
+	<div class="row" id="idTitleList">
+		<div class="col-lg-12">
+			<h3><spring:message code="register.kardex.title" /></h3>
 		</div>
-		<div class="contenButtons">
-			<button type="button" id="saveKardex">
-				<spring:message code="maintenance.botton.new.form" />
+	</div>
+	<div class="row" id="idFindProduct">
+		<div id="divFormDiv" class="formDiv">
+			<label><spring:message code="register.kardex.producto" /></label>
+		</div>
+		<div id="divFormDiv" class="formDiv">
+			<input	type="text" maxlength="60" id="idNameProduct" />
+		</div>
+		<div id="divFormDiv" class="formDiv">
+			<button type="submit" id="idFindProduct">
+				<spring:message code="maintenance.generic.button.find" />
 			</button>
 		</div>
-	</form>
-</div>
-<div>
-	<div id="idTitleList">
-		<h2>
-			<spring:message code="register.kardex.title" />
-		</h2>
-	</div>
-	<div id="idFindProduct">
-		<label><spring:message code="register.kardex.producto" /></label>
-		<input	type="text" maxlength="60" id="idNameProduct" />
-		<button type="submit" id="idFindProduct">
-			<spring:message code="maintenance.generic.button.find" />
-		</button>
 		<div id="idShowError" class="lblmessagesred"></div>
 		<input type="hidden" maxlength="60" id="idValueNameProduct" value="${nameProduct}" /> 
 		<input type="hidden" maxlength="60" id="idValueProduct" value="${productId}" />
@@ -106,90 +36,231 @@
 			<spring:message code="maintenance.type.product.list.empty" />
 		</c:if>
 		<c:if test="${listProduct!=null}">
-			<table class="tableStyle" border="1">
-				<tr class="thStyle">
-					<th><spring:message code="maintenance.generic.table.id" /></th>
-					<th><spring:message	code="maintenance.type.product.nombre.presentation" /></th>
-					<th><spring:message	code="maintenance.presentation.nombre.presentation" /></th>
-					<th><spring:message	code="maintenance.product.price.sale.title" /></th>
-					<th><spring:message	code="register.kardex.expiration.date.title" /></th>
-					<th><spring:message	code="maintenance.generic.table.registration" /></th>
-				</tr>
-				<c:forEach items="${listProduct}" var="listProductData">
-					<tr>
-						<td class="tdDatatable">${listProductData.id}</td>
-						<td class="tdDatatable">${listProductData.nameProduct}</td>
-						<td class="tdDatatable">${listProductData.namePresentation}</td>
-						<td class="tdDatatable">${listProductData.priceSale}</td>
-						<td class="tdDatatable">${listProductData.expirationDate}</td>
-						<td class="tdDatatable"><a id="linkID"
-							href="javascript:listKardex('${listProductData.id}','${listProductData.nameProduct}')"><img
-								src="${pageContext.request.contextPath}/resources/images/1418564230_process.png"
-								alt="HTML tutorial" style="width: 20px; height: 20px; border: 0"></a></td>
-						<%-- 				<td class="tdDatatable"><a id="linkID_delete" href="javascript:fnOpenNormalDialog('${listPresentationData.id}','2')"><img src="${pageContext.request.contextPath}/resources/images/delete_icon.png" alt="HTML tutorial" style="width:20px;height:20px;border:0"></a></td> --%>
-					</tr>
-				</c:forEach>
-
-			</table>
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-lg-4 col-lg-offset-4"> -->
+<!-- 				<input type="search" id="search" value="" class="form-control" placeholder="Introduce un criterio de busqueda"> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		<div class="row">
+			<div class="col-lg-12">
+				<table class="table" id="table">
+					<thead>
+						<tr>
+							<th><spring:message code="maintenance.generic.table.id" /></th>
+							<th><spring:message	code="maintenance.type.product.nombre.presentation" /></th>
+							<th><spring:message	code="maintenance.presentation.nombre.presentation" /></th>
+							<th><spring:message	code="maintenance.product.price.sale.title" /></th>
+							<th><spring:message	code="register.kardex.expiration.date.title" /></th>
+							<th><spring:message	code="maintenance.generic.table.registration" /></th>
+						</tr>				
+					</thead>
+					<tbody>
+					<c:forEach items="${listProduct}" var="listProductData">
+						<tr	>
+							<td class="tdDatatable">${listProductData.id}</td>
+							<td class="tdDatatable">${listProductData.nameProduct}</td>
+							<td class="tdDatatable">${listProductData.namePresentation}</td>
+							<td class="tdDatatable">${listProductData.priceSale}</td>
+							<td class="tdDatatable">${listProductData.expirationDate}</td>
+							<td class="tdDatatable"><a id="linkID"
+								href="javascript:listKardex('${listProductData.id}','${listProductData.nameProduct}')"><img
+									src="${pageContext.request.contextPath}/resources/images/1418564230_process.png"
+									alt="HTML tutorial" style="width: 20px; height: 20px; border: 0"></a></td>
+						</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
 		</c:if>
 	</div>
 	<br />
 	<div>
 		<c:if test="${listKardex==null && valueKardexList==1}">
-			<script type="text/javascript">
-				$("#typeMessagesFormKardex").html('<label><spring:message code="register.kardex.comment.header.form"/></label>');
-				$("#idTypeOperation").prop("disabled", true);
-				$("#frmRegisterKardex").dialog({
-					width : 550,
-					height : 248
-				});
-				$("#idProductKardex").val($("#idValueProduct").val());
-				$("#idDetailNameKardex").val($("#idValueNameProduct").val());
-			</script>
+			<div id="divFormDiv" class="formDiv">
+				<button type="submit" id="idAddNewKardex">
+					<spring:message code="register.kardex.button.new" />
+				</button>
+			</div>
 		</c:if>
 		<c:if test="${listKardex!=null}">
-			<div id='idTitleList'>
-				<label class='titlePage'><spring:message code="register.kardex.master.sub.title" /></label>
+			<div class="row">
+				<div id='idTitleList'>
+					<label class='titlePage'><spring:message code="register.kardex.master.sub.title" /></label>
+				</div>
 			</div>
-			<button type="button" id="idNewKardexDetail">
-				<spring:message code="register.kardex.new.detail" />
-			</button>
+			<div class="row">
+				<button type="button" id="idNewKardexDetail">
+					<spring:message code="register.kardex.new.detail" />
+				</button>
+			</div>
 			<c:if test="${errorStockProduct=='error'}">
 				<label class="labelForm"><spring:message code="error.exceed.limit.product" /></label>
 			</c:if>
-			<table class="tableStyle" border="1">
-				<tr class="thStyle">
-					<th><spring:message code="maintenance.generic.table.id" /></th>
-					<th><spring:message code="maintenance.type.product.nombre.presentation" /></th>
-					<th><spring:message	code="maintenance.presentation.nombre.presentation" /></th>
-					<th><spring:message	code="maintenance.generic.table.total.entry" /></th>
-					<th><spring:message	code="maintenance.generic.table.total.egress" /></th>
-					<th><spring:message code="maintenance.generic.table.count.total" /></th>
-					<th><spring:message code="maintenance.generic.table.detail" /></th>
-				</tr>
-				<c:forEach items="${listKardex}" var="listKardexData">
-					<tr>
-						<td class="tdDatatable">
-							<div id="idKardexTable">
-								${listKardexData.id}
-							</div>
-						</td>
-						<td class="tdDatatable">${listKardexData.nameProduct}</td>
-						<td class="tdDatatable">${listKardexData.namePresentation}</td>
-						<td class="tdDatatable">${listKardexData.totalEntry}</td>
-						<td class="tdDatatable">${listKardexData.totalEgress}</td>
-						<td class="tdDatatable">${listKardexData.countProduct}</td>
-						<td class="tdDatatable">
-							<a id="linkID" href="javascript:listDetailKardex('${listKardexData.id}','${listKardexData.nameProduct}','${listKardexData.priceTotalProduct}','${listKardexData.priceTotalSale}','${listKardexData.countProduct}')"><img src="${pageContext.request.contextPath}/resources/images/1419181097_Search-128.png"	alt="HTML tutorial" style="width: 20px; height: 20px; border: 0"></a>
-						</td>
-					</tr>
-				</c:forEach>
-
-			</table>
+			<div class="row">
+				<div class="col-lg-12">
+					<table class="table" id="idTableDetail">
+						<thead>
+							<tr>
+								<th><spring:message code="maintenance.generic.table.id" /></th>
+								<th><spring:message code="maintenance.type.product.nombre.presentation" /></th>
+								<th><spring:message	code="maintenance.presentation.nombre.presentation" /></th>
+								<th><spring:message	code="maintenance.generic.table.total.entry" /></th>
+								<th><spring:message	code="maintenance.generic.table.total.egress" /></th>
+								<th><spring:message code="maintenance.generic.table.count.total" /></th>
+								<th><spring:message code="maintenance.generic.table.detail" /></th>
+							</tr>				
+						</thead>
+						<tbody>
+							<c:forEach items="${listKardex}" var="listKardexData">
+								<tr>
+									<td class="tdDatatable">
+										<div id="idKardexTable">
+											${listKardexData.id}
+										</div>
+									</td>
+									<td class="tdDatatable">${listKardexData.nameProduct}</td>
+									<td class="tdDatatable">${listKardexData.namePresentation}</td>
+									<td class="tdDatatable">${listKardexData.totalEntry}</td>
+									<td class="tdDatatable">${listKardexData.totalEgress}</td>
+									<td class="tdDatatable">${listKardexData.countProduct}</td>
+									<td class="tdDatatable">
+										<a id="linkID" href="javascript:listDetailKardex('${listKardexData.id}','${listKardexData.nameProduct}','${listKardexData.priceTotalProduct}','${listKardexData.priceTotalSale}','${listKardexData.countProduct}')"><img src="${pageContext.request.contextPath}/resources/images/1419181097_Search-128.png"	alt="HTML tutorial" style="width: 20px; height: 20px; border: 0"></a>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</c:if>
 	</div>
 	<div id="kardexDetail"></div>
+</div>
+</header>
 
+<div id="frmRegisterKardex" class="modal fade">
+	<div class='modal-dialog'>
+		<div class='modal-content'>
+			<div class='modal-header'>
+				<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+				<div id="idTitleModal">
+					<h4 class='modal-title'>
+						<spring:message code="register.kardex.title"/>
+					</h4>				
+				</div>
+			</div>
+			<div class="modal-body">
+			<div id="typeMessagesFormKardex" class="lblmessagesred"></div>
+			<form id="idRegisterKardexForm">
+				<div id="divFormDiv" class="formDiv">
+					<table>
+						<tr>
+							<td><label class="labelForm"><spring:message code="register.kardex.type.operation" /></label></td>
+							<td>
+								<select id="idTypeOperation">
+									<option value="1"><spring:message code="register.kardex.type.operation.entry" />
+									<option value="2"><spring:message code="register.kardex.type.operation.egress" />
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div id="lblTypeOperation">
+									<label class="labelForm"><spring:message code="register.kardex.type.operation" /></label>
+								</div>
+							</td>
+							<td><input type="text" id="idCantidad" name="idCantidad"/></td>
+						</tr>
+						<tr>
+							<td>
+								<label class="labelForm"><spring:message code="register.kardex.comprobante.class" /></label>
+							</td>
+							<td>
+								<div id="idSelectEntrada" style="display: none">
+									<select id="idComprobanteClassEntrada">
+										<option value="Boleta Venta">Boleta Venta</option>
+										<option value="Factura">Factura</option>
+									</select>
+								</div>
+								<div id="idSelectSalida" style="display: none">
+									<select id="idComprobanteClassSalida">
+										<option value="Boleta Venta">Boleta Venta</option>
+										<option value="Informe">Informe</option>
+									</select>
+								</div>
+		<!-- 						<input type="text" id="idComprobanteClass" name="idComprobanteClass"/> -->
+							</td>
+						</tr>
+						<tr>
+							<td><label class="labelForm"><spring:message code="register.kardex.comprobante.number" /></label></td>
+							<td><input type="text" id="idComprobanteNumber" name="idComprobanteNumber"/></td>
+						</tr>
+						<tr>
+							<td><label class="labelForm"><spring:message code="register.kardex.comprobante.ticketNumber" /></label></td>
+							<td><input type="text" id="idComprobanteNumber" name="idComprobanteNumber"/></td>
+						</tr>
+						<tr>
+							<td>
+								<input type="hidden" id="idProductKardex" /> 
+								<input type="hidden" id="idDetailNameKardex" />
+								<input type="hidden" id="idKardexMaster"/>
+							</td>
+						</tr>
+					</table>
+		
+		
+				</div>
+			</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" id="saveKardex">
+					<spring:message code="maintenance.botton.new.form" />
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<spring:message code="close.button" />
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="idDetailKardex" class="modal fade">
+	<div class='modal-dialog'>
+		<div class='modal-content'>
+			<div class='modal-header'>
+				<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+				<div id="idTitleModal">
+					<h4 class='modal-title'>
+						<spring:message code="kardex.title" />
+					</h4>				
+				</div>
+			</div>
+			<div class="modal-body">
+				<div id="divFormDiv" class="formDiv">
+					<div id="idNameProductDetail"></div>
+				</div>
+				<div id="divFormDiv" class="formDiv">
+					<div id="idCountProductTotal"></div>
+				</div>
+				<div id="divFormDiv" class="formDiv">
+					<div id="idSpanPriceTotalProduct"></div>
+				</div>
+				<div id="divFormDiv" class="formDiv">
+					<div id="idSpanPriceTotalSale"></div>
+				</div>
+				<br/>
+				<div id="idDetailKardexData"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<spring:message code="close.button" />
+				</button>
+			</div>
+		</div>
+	</div>
+	<br/>
+	
 </div>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -263,11 +334,31 @@
 		
 	});
 	
+	$("#idAddNewKardex").click(function(event) {
+			$("#typeMessagesFormKardex").html('<label><spring:message code="register.kardex.comment.header.form"/></label>');
+			$("#idTypeOperation").prop("disabled", true);
+			$('#frmRegisterKardex').modal('show');
+			$("#idProductKardex").val($("#idValueProduct").val());
+			$("#idDetailNameKardex").val($("#idValueNameProduct").val());
+	});
+	
 	function listKardex(idProduct, nameProduct) {
-		// 	alert("ID PRODUCT : "+idProduct);
+// 		alert("ID PRODUCT : "+idProduct);
 		var nameProduct = $("#idValueNameProduct").val();
 		document.location = "${pageContext.request.contextPath}/listKardexByProduct.htm?nameProduct="
 				+ nameProduct + "&productId=" + idProduct;
+		
+// 		$.ajax({
+// 			url : '${pageContext.request.contextPath}/listKardexByProduct.htm',
+// 			type : 'GET',
+// 			data : 'kardexId=' + idKardex+ "&productId=" + idProduct,
+// 			success : function(response) {
+// 				alert('Fue Success');
+// 			},
+// 			error : function() {
+// 				alert('Error in AJAX');
+// 			}
+// 		});
 	}
 
 	function listDetailKardex(idKardex, nameProduct,priceTotalProduct,priceTotalSale,countTotalProduct) {
@@ -290,20 +381,18 @@
 		$("#idSpanPriceTotalProduct").html('<label class="labelFormDetail"><spring:message code="price.total.product"/></label><label class="labelForm">'+priceTotalProduct+'</label>');
 		$("#idSpanPriceTotalSale").html('<label class="labelFormDetail"><spring:message code="price.total.sale"/></label><label class="labelForm"> '+priceTotalSale+'</label>');
 		$("#idCountProductTotal").html('<label class="labelFormDetail"><spring:message code="register.kardex.count.total"/></label><label class="labelForm"> '+countTotalProduct+'</label>');
-		$("#idDetailKardex").dialog({
-			width : 978,
-			height : 321
-		});
+		$('#idDetailKardex').modal('show');
+// 		$("#idDetailKardex").dialog({
+// 			width : 978,
+// 			height : 321
+// 		});
 	
 	}
 
 	function loadNewKardex(idProduct, nameProduct,idKardex) {
 		$("#typeMessagesFormKardex").html('<label><spring:message code="register.kardex.comment.header.form.new"/></label>');
 		$("#idTypeOperation").prop("disabled", false);
-		$("#frmRegisterKardex").dialog({
-			width : 550,
-			height : 248
-		});
+		$('#frmRegisterKardex').modal('show');
 		$("#idProductKardex").val(idProduct);
 		$("#idDetailNameKardex").val(nameProduct);
 		$("#idKardexMaster").val(idKardex);

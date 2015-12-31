@@ -21,7 +21,6 @@ public class TbNewPatient implements Serializable {
 
 	private String adress;
 
-//	@Temporal(TemporalType.DATE)
 	@Column(name="birth_day")
 	private Date birthDay;
 

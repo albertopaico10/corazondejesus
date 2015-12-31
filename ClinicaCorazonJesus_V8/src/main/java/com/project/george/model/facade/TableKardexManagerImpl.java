@@ -17,12 +17,14 @@ import com.project.george.common.CommonUtil;
 import com.project.george.common.UtilMethods;
 import com.project.george.model.TbDetailKardex;
 import com.project.george.model.TbKardex;
+import com.project.george.model.TbPresentation;
 import com.project.george.model.TbProduct;
 import com.project.george.model.custom.dao.CustomTableProductDao;
 import com.project.george.model.custom.dao.CustomTableProductDaoImpl;
 import com.project.george.model.dao.TableDetailKardexDao;
 import com.project.george.model.dao.TableKardexDao;
 import com.project.george.model.dao.TableKardexDaoImpl;
+import com.project.george.model.dao.TablePresentationDao;
 import com.project.george.model.dao.TableProductDao;
 import com.project.george.model.dao.TableProductDaoImpl;
 import com.project.george.model.dto.TbDetailKardexDTO;
@@ -42,6 +44,9 @@ public class TableKardexManagerImpl implements TableKardexManager{
 	
 	@Autowired
 	TableProductDao customTableProductDao;
+	
+	@Autowired
+	TablePresentationDao customTablePresentation;
 
 	public List<TbKardexDTO> listKardexByProduct(int idProduct) throws Exception{
 		System.out.println("Inside listKardexByProduct");
@@ -51,8 +56,13 @@ public class TableKardexManagerImpl implements TableKardexManager{
 		
 		UtilMethods utilMethods=new UtilMethods();
 		for (TbKardex beanKardex:listKardex){
+			//-- Find Bean Product
+			TbProduct beanProduct=customTableProductDao.beanProductSpecific(idProduct);
+			//-- Find Bean Presentation
+			TbPresentation beanPresentation=customTablePresentation.beanPresentationSpecific(beanProduct.getIdPresentation());
+			
 			TbKardexDTO beanKardexDTO=new TbKardexDTO();
-			beanKardexDTO=utilMethods.copyValuesTbKardexDTO(beanKardex, beanKardexDTO);
+			beanKardexDTO=utilMethods.copyValuesTbKardexDTO(beanKardex, beanKardexDTO,beanProduct,beanPresentation);
 			System.out.println("Valores que envia : "+beanKardexDTO.getId()+"**"+beanKardexDTO.getNameProduct()+"***"+beanKardexDTO.getCountProduct());
 			newListKardex.add(beanKardexDTO);
 		}
@@ -71,11 +81,10 @@ public class TableKardexManagerImpl implements TableKardexManager{
 		System.out.println("Estoy aqui addNewRegisterKardex");
 
 		TbProduct beanProuctKardex=customTableProductDao.beanProductSpecific(Integer.parseInt(idProduct));
-		
-		beanKardex.setTbProduct(beanProuctKardex);
-		beanKardex.setStatus(CommonUtil.STATUS_ACTIVE);
 		System.out.println("SALI DE BUSCAR PRODUCTO ESPECIFICO");
 		
+		beanKardex.setStatus(CommonUtil.STATUS_ACTIVE);
+		beanKardex.setIdProduct(beanProuctKardex.getId());
 		beanKardex.setPriceTotalProduct(BigDecimal.valueOf(0));
 		beanKardex.setPriceTotalSale(BigDecimal.valueOf(0));
 		beanKardex.setPriceKardex(BigDecimal.valueOf(0));
@@ -90,18 +99,18 @@ public class TableKardexManagerImpl implements TableKardexManager{
 		//--Add Detail
 		TbDetailKardex beanDetailKardex=new TbDetailKardex();
 		beanDetailKardex.setId(0);
+		beanDetailKardex.setIdKardex(beanKardex.getId());
 		beanDetailKardex.setCantidad(Integer.parseInt(cantidad));
 		beanDetailKardex.setTypeOperation(typeOperation);
 		beanDetailKardex.setComprobante_clase(comprobanteClase);
-//		beanDetailKardex.setComprobante_number(Integer.parseInt(comprobanteNumber));
+		beanDetailKardex.setComprobante_number(comprobanteNumber);
 		beanDetailKardex.setStatus(CommonUtil.STATUS_ACTIVE);
 		beanDetailKardex.setPrice_Product(beanProuctKardex.getPrice_Product());
 		beanDetailKardex.setPrice_sale(beanProuctKardex.getPrice_sale());
-		beanDetailKardex.setTbKardex(beanKardex);
 		
-		Set<TbDetailKardex> set=new HashSet<TbDetailKardex>();
-		set.add(beanDetailKardex);
-		beanKardex.setTbDetailKardexs(set);
+//		Set<TbDetailKardex> set=new HashSet<TbDetailKardex>();
+//		set.add(beanDetailKardex);
+//		beanKardex.setTbDetailKardexs(set);
 		//--insert detail
 		customTableDetailKardexDao.addNew_DetailKardex(beanDetailKardex);
 		try {
