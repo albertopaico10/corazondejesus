@@ -264,7 +264,7 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		 $("#contenedor").css("visibility","hidden");
 	});
 
 	function displayValues() {
