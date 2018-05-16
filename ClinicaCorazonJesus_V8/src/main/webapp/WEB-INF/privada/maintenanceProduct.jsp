@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/common/taglib.jsp"%>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/private.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -15,7 +16,7 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-4 col-lg-offset-4">
-				<button type="button" id="new_product">
+				<button type="button" id="new_product" class="btn btn-primary btn-lg btn_cj">
 					<spring:message code="maintenance.type.product.botton.new" />
 				</button>
 			</div>
@@ -80,11 +81,11 @@
 				<div class="modal-body">
 					<div id="divFormDiv" class="formDiv">
 						<label for="userName" class="labelForm"><spring:message code="maintenance.type.product.name" /></label>
-						<html:input path="nameProduct" maxlength="60" id="nameProduct"/>
+						<html:input path="nameProduct" class="form-control" maxlength="60" id="nameProduct"/>
 					</div>
 					<div id="divFormDiv" class="formDiv">
 						<label for="userName" class="labelForm"><spring:message code="maintenance.product.presentation" /></label>
-						<html:select path="idPresentation" id="idPresentation">
+						<html:select path="idPresentation" id="idPresentation" class="form-control">
 							<html:option value="0">
 								<spring:message code="maintenance.product.option.0"/>
 							</html:option>
@@ -93,15 +94,15 @@
 					</div>
 					<div id="divFormDiv" class="formDiv">
 						<label for="userName" class="labelForm"><spring:message code="maintenance.product.price.unit" /></label>
-						<html:input path="price_Product" maxlength="60" id="price"/>
+						<html:input path="price_Product" class="form-control" maxlength="60" id="price"/>
 					</div>
 					<div id="divFormDiv" class="formDiv">
 						<label for="userName" class="labelForm"><spring:message code="maintenance.product.price.sale" /></label>
-						<html:input path="price_sale" maxlength="60" id="priceSale"/>
+						<html:input path="price_sale" class="form-control" maxlength="60" id="priceSale"/>
 					</div>
 					<div id="divFormDiv" class="formDiv">
 						<label for="userName" class="labelForm"><spring:message code="register.kardex.expiration.date" /></label>
-						<html:input path="expirationDate" id="expirationDate" class="dateStyle"/>
+						<html:input path="strExpirationDate" date-format="mm/dd/yyyy" class="form-control" type="date" id="strExpirationDate"/>
 					</div>
 				</div>
 				<div id="divIdValue"></div>
@@ -136,25 +137,27 @@
 </div>
 <script>
 $(document).ready(function() {
-	$( "#expirationDate").datepicker();
 		
 	$("#idMaintenanceForm").validate({
 		rules: {
 			nameProduct: "required",
+			idPresentation : {
+			    required: true
+			},
 			price_Product:{
 				required:true,
 				number:true
 			},
-			'tbPresentation.id':{min:1},
 			price_sale:{
 				required:true,
 				number:true,
 // 				greaterThan:"#price"
 			},
-			expirationDate:"required"
+			strExpirationDate:"required"
 		},
 		messages: {
 			nameProduct: '<spring:message code="maintenance.generic.field.required" />',
+			idPresentation: '<spring:message code="maintenance.generic.field.required" />',
 			price_Product:{
 					required:'<spring:message code="maintenance.generic.field.required" />',
 					number:'<spring:message code="login.error.number" />',
@@ -165,7 +168,7 @@ $(document).ready(function() {
 				number:'<spring:message code="login.error.number" />',
 // 				greaterThan:'<spring:message code="login.error.number" />'
 			},
-			expirationDate: '<spring:message code="maintenance.generic.field.required" />'
+			strExpirationDate: '<spring:message code="maintenance.generic.field.required" />'
 		},
         submitHandler: function(form) {
             form.submit();
@@ -185,11 +188,12 @@ $("#new_product" ).click(function( event ) {
 	$( 'select' ).val(0);
 	$( "#price" ).val("");
 	$( "#priceSale" ).val("");
-	$( "#expirationDate" ).val("");
+	$( "#strExpirationDate" ).val("");
 	$("#idSave").html('<spring:message code="maintenance.roles.botton.new.role.form" />');
 });
 
 function updateProduct(idValue,nameProduct,idPresentation,price,priceSale,expirationDate){
+	console.log("Valor date : "+expirationDate);
 // 	$(".error").html('');
 // 	$(".error").removeClass("error");
 	$("#divIdValue").empty();
@@ -198,7 +202,7 @@ function updateProduct(idValue,nameProduct,idPresentation,price,priceSale,expira
 	$( 'select' ).val(idPresentation+"");
 	$( "#price" ).val(price+"");
 	$( "#priceSale" ).val(priceSale+"");
-	$( "#expirationDate" ).val(expirationDate+"");
+	$( "#strExpirationDate" ).val(expirationDate+"");
 	$( "#frmMaintenance" ).dialog('option', 'title', '<spring:message code="maintenance.areas.title.update" />');
 	$("#idSave").html('<spring:message code="maintenance.roles.botton.update.role.form" />');
 	$("#divIdValue").append('<input id="idValue" name="id" type="hidden" value="'+idValue+'"/>');

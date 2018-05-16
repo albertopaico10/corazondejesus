@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/common/taglib.jsp"%>
  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+ <link href="${pageContext.request.contextPath}/resources/css/private.css" rel="stylesheet">
  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <header>
@@ -19,7 +20,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-4 col-lg-offset-4">
-			<button type="button" id="new_presentation">
+			<button type="button" id="new_presentation" class="btn btn-primary btn-lg btn_cj">
 				<spring:message code="maintenance.presentation.botton.new.presention" />
 			</button>
 		</div>
@@ -50,7 +51,7 @@
 					<tr	>
 						<td class="tdDatatable">${listPresentationData.id}</td>
 						<td class="tdDatatable">${listPresentationData.namePresentation}</td>
-						<td class="tdDatatable"><a id="linkID" href="javascript:updateArea('${listPresentationData.id}','${listPresentationData.namePresentation}')"><img src="${pageContext.request.contextPath}/resources/images/edit_icon.png" alt="HTML tutorial" style="width:20px;height:20px;border:0"></a></td>
+						<td class="tdDatatable"><a id="linkID" href="javascript:updatePresentation('${listPresentationData.id}','${listPresentationData.namePresentation}')"><img src="${pageContext.request.contextPath}/resources/images/edit_icon.png" alt="HTML tutorial" style="width:20px;height:20px;border:0"></a></td>
 						<td class="tdDatatable"><a id="linkID_delete" class="confirm-delete" data-id="${listPresentationData.id}" href="#"><img src="${pageContext.request.contextPath}/resources/images/delete_icon.png" alt="HTML tutorial" style="width:24px;height:24px;border:0"></a></td>
 					</tr>
 				</c:forEach>
@@ -94,7 +95,7 @@
 				<div class="modal-body">
 					<div id="divFormDiv" class="formDiv">
 						<label><spring:message code="maintenance.presentation.nombre.presentation" /></label>
-						<html:input path="namePresentation" maxlength="60" id="namePresentation" />
+						<html:input path="namePresentation" class="form-control" maxlength="60" id="namePresentation" />
 					</div>
 					<div id="divIdPresentation"></div>
 				</div>
@@ -119,7 +120,7 @@ $(document).ready(function() {
 			namePresentation: "required"
 		},
 		messages: {
-			namePresentation: "Please enter a Presentation"
+			namePresentation: "Ingresar un nombre de Presentación"
 		},
         submitHandler: function(form) {
             form.submit();
@@ -140,7 +141,7 @@ $("#new_presentation" ).click(function( event ) {
 	$("#savePresentation").html('<spring:message code="maintenance.botton.new.form" />');
 });
 
-function updateArea(idArea,namePresentation){
+function updatePresentation(idPresentation,namePresentation){
 	$(".error").html('');
 	$(".error").removeClass("error");
 	$("#divIdPresentation").empty();
@@ -148,7 +149,7 @@ function updateArea(idArea,namePresentation){
 	$("#namePresentation" ).val(namePresentation+"");
 	$("#idTitleModal" ).html('<h4 class="modal-title"><spring:message code="maintenance.presentation.title.update"/></h4>');
 	$("#savePresentation").html('<spring:message code="maintenance.roles.botton.update.role.form" />');
-	$("#divIdPresentation").append('<input id="idArea" name="id" type="hidden" value="'+idArea+'"/>');
+	$("#divIdPresentation").append('<input id="idPresentation" class="form-control input-lg" name="id" type="hidden" value="'+idPresentation+'"/>');
 }
 
 function deletePresentation() {

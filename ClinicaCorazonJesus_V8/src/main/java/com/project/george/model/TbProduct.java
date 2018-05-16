@@ -3,6 +3,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -41,6 +42,9 @@ public class TbProduct implements Serializable {
 	private int status;
 	
 	private int idPresentation;
+	
+	@Transient
+	private String strExpirationDate;
 
 	public TbProduct() {
 	}
@@ -107,6 +111,14 @@ public class TbProduct implements Serializable {
 
 	public void setIdPresentation(int idPresentation) {
 		this.idPresentation = idPresentation;
+	}
+	@Transient
+	public String getStrExpirationDate() {
+		return strExpirationDate;
+	}
+
+	public void setStrExpirationDate(String strExpirationDate) {
+		this.strExpirationDate = strExpirationDate;
 	}
 	
 }

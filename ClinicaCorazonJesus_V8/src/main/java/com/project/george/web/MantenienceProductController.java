@@ -72,7 +72,7 @@ public class MantenienceProductController {
 	}
 	
 	@RequestMapping("registerProduct.htm")
-	public ModelAndView validateUserForm(
+	public ModelAndView saveProduct(
 			@ModelAttribute TbProduct tableTypeProductBean,
 			final BindingResult result, final SessionStatus status,
 			final HttpServletRequest request) {

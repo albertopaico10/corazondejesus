@@ -1,5 +1,6 @@
 package com.project.george.model.facade;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +70,9 @@ public class TableProductManagerImpl implements TableProductManager {
 	public String addNewTypeProduct(TbProduct tbTypeProductBean)
 			throws Exception {
 		String returnRsponse=CommonUtil.MantenienceProduct.RESPONSE_MANTENIENCE_PRODUCT_NEW;
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 		try {
+			tbTypeProductBean.setExpirationDate(formatter.parse(tbTypeProductBean.getStrExpirationDate()));
 			customTableTypeProduct.addNewMantenience(tbTypeProductBean);
 		} catch (Exception e) {
 			returnRsponse=CommonUtil.ERROR;
