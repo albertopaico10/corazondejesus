@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/jquery-ui.css"></link>
 	
 	<link href="${pageContext.request.contextPath}/resources/bootstrap/css/simple-sidebar.css" rel="stylesheet"></link>
+	
+		
 </head>
 <body>
 	<div id="contenedor">

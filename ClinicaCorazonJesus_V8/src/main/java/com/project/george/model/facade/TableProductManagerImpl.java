@@ -72,7 +72,7 @@ public class TableProductManagerImpl implements TableProductManager {
 		String returnRsponse=CommonUtil.MantenienceProduct.RESPONSE_MANTENIENCE_PRODUCT_NEW;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 		try {
-			tbTypeProductBean.setExpirationDate(formatter.parse(tbTypeProductBean.getStrExpirationDate()));
+			//tbTypeProductBean.setExpirationDate(formatter.parse(tbTypeProductBean.getStrExpirationDate()));
 			customTableTypeProduct.addNewMantenience(tbTypeProductBean);
 		} catch (Exception e) {
 			returnRsponse=CommonUtil.ERROR;

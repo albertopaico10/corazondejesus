@@ -103,7 +103,7 @@
 					<button type="submit" class="btn btn-default" id="savePresentation">
 						<spring:message code="maintenance.botton.new.form" />
 					</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">
+					<button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">
 						<spring:message code="close.button" />
 					</button>
 				</div>
@@ -139,6 +139,11 @@ $("#new_presentation" ).click(function( event ) {
 	$( "#namePresentation" ).val("");
 	$("#idTitleModal" ).html('<h4 class="modal-title"><spring:message code="maintenance.presentation.title.add"/></h4>');
 	$("#savePresentation").html('<spring:message code="maintenance.botton.new.form" />');
+});
+
+$("#cancel").click(function() {
+	$("label.error").hide();
+	$(".error").removeClass("error");
 });
 
 function updatePresentation(idPresentation,namePresentation){

@@ -1,8 +1,8 @@
 <%@ include file="/WEB-INF/common/taglib.jsp"%>
  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/commons.css"></link>
- 
- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+ <link href="${pageContext.request.contextPath}/resources/css/private.css" rel="stylesheet">
+ <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+ <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
  <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
  <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
@@ -16,34 +16,41 @@
 		<div class="col-lg-12">
 			<h3><spring:message code="atention.patient.title" /></h3>
 		</div>
-	</div>
-	<div class="row">
-		<form id="idFindPatient" action="findPatientSpecific.htm" method="POST">
-			<div id="divFormDiv" class="formDiv">
-				<input id="lastName" name="lastName" placeholder="Apellido" title="Apellido" type="text" value="" size="40"/>
-			</div>
-			<br>
-			<div id="divFormDiv" class="formDiv">
-				<input id="dniValue" name="dniValue" placeholder="DNI" title="DNI" type="text" value="" size="8"/>
-			</div>
-			<br>
-			<div id="divFormDiv" class="formDiv">
-				<input id="submit" name="submit" onclick="$('#contenedor').css('visibility','')" type="submit" value="Buscar">
-			</div>
-		</form>	
+		
 	</div>
 	<div class="row">
 		<div class="col-lg-4 col-lg-offset-4">
-			<button type="button" id="new_patient">
+			<button type="button" id="new_patient" class="btn btn-primary btn-lg btn_cj">
 				<spring:message code="maintenance.patient.botton.new.patient" />
 			</button>
 		</div>
 	</div>
 	<br>
 	<div class="row">
+		<div class="col-lg-12">
+			<h4><spring:message code="atention.patient.filter.subtitle" /></h4>
+		</div>
+	</div>
+	<div class="row">
+		<form id="idFindPatient" action="findPatientSpecific.htm" method="POST">
+			<div id="divFormDiv" class="formDiv">
+				<input id="lastName" class="form-control" name="lastName" placeholder="Apellido" title="Apellido" type="text" value="" size="40"/>
+			</div>
+			<br>
+			<div id="divFormDiv" class="formDiv">
+				<input id="dniValue" class="form-control" name="dniValue" placeholder="DNI" title="DNI" type="text" value="" size="8"/>
+			</div>
+			<br>
+			<div id="divFormDiv" class="formDiv">
+				<input id="submit" name="submit" onclick="$('#contenedor').css('visibility','')" type="submit" value="Buscar" class="btn btn-primary btn-lg btn_find_cj">
+			</div>
+		</form>	
+	</div>
+	<br>
+	<c:if test="${listPatient!=null}">
+	<div class="row">
 		<div id="idTitleList"><label class="titlePage"><spring:message code="maintenance.patiente.title.list" /></label></div>
 	</div>
-	<c:if test="${listPatient!=null}">
 	<div class="row">
 		<div class="col-lg-12">
 			<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="table">
@@ -111,94 +118,47 @@
 			</div>
 			<html:form method="POST" commandName="maintenancePatientForm" action="registerPatient.htm" id="idMaintenancePatientForm" novalidate="novalidate">
 				<div class="modal-body">
-					<div id="divFormDivPatient" class="formDiv">
-						<table>
-							<tr>
-								<td>
-									<label for="userName" class="labelForm"><spring:message code="maintenance.patient.name.form" /></label>
-								</td>
-								<td>
-									<html:input path="namePatient" maxlength="60" id="namePatient" class="inputTextStye"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="userName" class="labelForm"><spring:message code="maintenance.patient.lastName.form" /></label>
-								</td>
-								<td>
-									<html:input path="lastNamePatient" maxlength="60" id="lastNamePatient"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="userName" class="labelForm"><spring:message code="maintenance.patient.DNI.form" /></label>
-								</td>
-								<td>
-									<html:input path="dni" maxlength="8" id="dni"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="userName" class="labelForm"><spring:message code="maintenance.patient.birthDate.form" /></label>
-								</td>
-								<td>
-									<html:input path="birthDay" id="birthDay" class="dateStyle"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="userName" class="labelForm"><spring:message code="maintenance.patient.history.clinic.form" /></label>
-								</td>
-								<td>
-									<html:input path="codeHistoryClinic" id="codeHistoryClinic" readonly="true"/>
-								</td>
-							</tr>
-							
-							<tr>
-								<td>
-									<label for="userName" class="labelForm"><spring:message code="maintenance.patient.adress.form" /></label>
-								</td>
-								<td>
-									<html:input path="adress" maxlength="100" id="adress"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="userName" class="labelForm"><spring:message code="maintenance.patient.district.form" /></label>
-								</td>
-								<td>
-									<html:input path="districtName" maxlength="100" id="districtName"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="userName" class="labelForm"><spring:message code="maintenance.patient.sex.form" /></label>
-								</td>
-								<td>
-			<%-- 						<html:radiobutton value="1" id="sex"/><spring:message code="male.option" /> --%>
-			<%-- 						<html:radiobutton value="2" id="sex"/><spring:message code="female.option" /> --%>
-									<input type="radio" value="1" id="idRbMale"><spring:message code="male.option" />
-									<input type="radio" value="2" id="idRbFemale"><spring:message code="female.option" />
-									<html:hidden path="sex" maxlength="100" id="finalsex"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="userName" class="labelForm"><spring:message code="maintenance.patient.nameperson.reference.form" /></label>
-								</td>
-								<td>
-									<html:input path="nameReference" maxlength="100" id="idNameReference"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="userName" class="labelForm"><spring:message code="maintenance.patient.phone.reference.form" /></label>
-								</td>
-								<td>
-									<html:input path="phoneReference" maxlength="9" id="idPhoneReference"/>
-								</td>
-							</tr>
-						</table>			
+					<div id="divFormDiv" class="formDiv">
+						<label for="userName" class="labelForm"><spring:message code="maintenance.patient.name.form" /></label>
+						<html:input path="namePatient" maxlength="60" class="form-control" id="namePatient"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label for="userName" class="labelForm"><spring:message code="maintenance.patient.lastName.form" /></label>
+						<html:input path="lastNamePatient" maxlength="60" class="form-control" id="lastNamePatient"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label for="userName" class="labelForm"><spring:message code="maintenance.patient.DNI.form" /></label>
+						<html:input path="dni" maxlength="8" class="form-control" id="dni"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label for="userName" class="labelForm"><spring:message code="maintenance.patient.birthDate.form" /></label>
+						<html:input class="form-control" path="birthDay" id="birthDay"  name="birthDay" placeholder="MM/DD/YYY" type="text"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label for="userName" class="labelForm"><spring:message code="maintenance.patient.history.clinic.form" /></label>
+						<html:input path="codeHistoryClinic" id="codeHistoryClinic" class="form-control" readonly="true"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label for="userName" class="labelForm"><spring:message code="maintenance.patient.adress.form" /></label>
+						<html:input path="adress" maxlength="100" id="adress" class="form-control"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label for="userName" class="labelForm"><spring:message code="maintenance.patient.district.form" /></label>
+						<html:input path="districtName" maxlength="100" id="districtName" class="form-control"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label for="userName" class="labelForm"><spring:message code="maintenance.patient.sex.form" /></label>
+						<input type="radio" value="1" id="idRbMale"><spring:message code="male.option" />
+						<input type="radio" value="2" id="idRbFemale"><spring:message code="female.option" />
+						<html:hidden path="sex" maxlength="100" id="finalsex"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label for="userName" class="labelForm"><spring:message code="maintenance.patient.nameperson.reference.form" /></label>
+						<html:input path="nameReference" maxlength="100" id="idNameReference" class="form-control"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label for="userName" class="labelForm"><spring:message code="maintenance.patient.phone.reference.form" /></label>
+						<html:input path="phoneReference" maxlength="9" id="idPhoneReference"  class="form-control"/>
 					</div>
 				</div>
 				<div id="divIdPatient"></div>
@@ -206,7 +166,7 @@
 					<button type="submit" class="btn btn-default" id="idSave">
 						<spring:message code="maintenance.botton.new.form"/>
 					</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">
+					<button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">
 						<spring:message code="close.button" />
 					</button>
 				</div>
@@ -242,9 +202,9 @@
 <script>
 
 $(document).ready(function() {
-	 $('#table').DataTable();
-	 $("#contenedor").css("visibility","hidden");
-// 	$( "#birthDay").datepicker();
+	$('#table').DataTable();
+	$("#contenedor").css("visibility","hidden");
+	$("#birthDay").datepicker();
 		
 	$("#idMaintenancePatientForm").validate({
 		rules: {
@@ -309,6 +269,11 @@ $("#new_patient" ).click(function( event ) {
 	$( "#idPhoneReference" ).val("");
 // 	$( 'select' ).val("0");
 	$("#savePatient").html('<spring:message code="maintenance.botton.new.form" />');
+});
+
+$("#cancel").click(function() {
+	$("label.error").hide();
+	$(".error").removeClass("error");
 });
 
 // $("#savePatient").click(function(){

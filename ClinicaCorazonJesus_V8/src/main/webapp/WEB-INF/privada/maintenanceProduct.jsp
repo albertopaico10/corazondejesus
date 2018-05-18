@@ -102,7 +102,7 @@
 					</div>
 					<div id="divFormDiv" class="formDiv">
 						<label for="userName" class="labelForm"><spring:message code="register.kardex.expiration.date" /></label>
-						<html:input path="strExpirationDate" date-format="mm/dd/yyyy" class="form-control" type="date" id="strExpirationDate"/>
+						<html:input  class="form-control" path="expirationDate" id="expirationDate" name="expirationDate" placeholder="MM/DD/YYY" type="text"/>
 					</div>
 				</div>
 				<div id="divIdValue"></div>
@@ -110,7 +110,7 @@
 					<button type="submit" class="btn btn-default" id="idSave">
 						<spring:message code="maintenance.botton.new.form"/>
 					</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">
+					<button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">
 						<spring:message code="close.button" />
 					</button>
 				</div>
@@ -137,13 +137,23 @@
 </div>
 <script>
 $(document).ready(function() {
-		
+	$( "#expirationDate").datepicker();
+	
+	jQuery.validator.addMethod(
+	          "notEqualTo",
+	          function(elementValue,element,param) {
+	            return elementValue != param;
+	          },
+	          "Value cannot be {0}"
+	        );
+
 	$("#idMaintenanceForm").validate({
 		rules: {
 			nameProduct: "required",
 			idPresentation : {
-			    required: true
-			},
+	              required: true,
+	              notEqualTo: 0
+	        },
 			price_Product:{
 				required:true,
 				number:true
@@ -153,7 +163,7 @@ $(document).ready(function() {
 				number:true,
 // 				greaterThan:"#price"
 			},
-			strExpirationDate:"required"
+			expirationDate:"required"
 		},
 		messages: {
 			nameProduct: '<spring:message code="maintenance.generic.field.required" />',
@@ -168,7 +178,7 @@ $(document).ready(function() {
 				number:'<spring:message code="login.error.number" />',
 // 				greaterThan:'<spring:message code="login.error.number" />'
 			},
-			strExpirationDate: '<spring:message code="maintenance.generic.field.required" />'
+			expirationDate: '<spring:message code="maintenance.generic.field.required" />'
 		},
         submitHandler: function(form) {
             form.submit();
@@ -188,8 +198,13 @@ $("#new_product" ).click(function( event ) {
 	$( 'select' ).val(0);
 	$( "#price" ).val("");
 	$( "#priceSale" ).val("");
-	$( "#strExpirationDate" ).val("");
+	$( "#expirationDate" ).val("");
 	$("#idSave").html('<spring:message code="maintenance.roles.botton.new.role.form" />');
+});
+
+$("#cancel").click(function() {
+	$("label.error").hide();
+	$(".error").removeClass("error");
 });
 
 function updateProduct(idValue,nameProduct,idPresentation,price,priceSale,expirationDate){
@@ -202,7 +217,7 @@ function updateProduct(idValue,nameProduct,idPresentation,price,priceSale,expira
 	$( 'select' ).val(idPresentation+"");
 	$( "#price" ).val(price+"");
 	$( "#priceSale" ).val(priceSale+"");
-	$( "#strExpirationDate" ).val(expirationDate+"");
+	$( "#expirationDate" ).val(expirationDate+"");
 	$( "#frmMaintenance" ).dialog('option', 'title', '<spring:message code="maintenance.areas.title.update" />');
 	$("#idSave").html('<spring:message code="maintenance.roles.botton.update.role.form" />');
 	$("#divIdValue").append('<input id="idValue" name="id" type="hidden" value="'+idValue+'"/>');
