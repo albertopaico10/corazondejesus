@@ -23,6 +23,7 @@ import com.project.george.model.facade.TableAreasManager;
 import com.project.george.model.facade.TablePresentationManager;
 
 @Controller
+@RequestMapping("/private/")
 public class ManteniencePresentationController {
 	
 	@Autowired

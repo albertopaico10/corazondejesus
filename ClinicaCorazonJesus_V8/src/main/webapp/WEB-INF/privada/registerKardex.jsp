@@ -1,8 +1,9 @@
 <%@ include file="/WEB-INF/common/taglib.jsp"%>
  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+ <link href="${pageContext.request.contextPath}/resources/css/private.css" rel="stylesheet">
  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/commons.css"></link>
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/commons.css"></link>
  
 <header>
 <div class="container">
@@ -18,15 +19,17 @@
 		<div id="divFormDiv" class="formDiv">
 			<label><spring:message code="register.kardex.producto" /></label>
 		</div>
-		<div id="divFormDiv" class="formDiv">
-			<input	type="text" maxlength="60" id="idNameProduct" />
+		<div id="divFormDiv" class="formDiv col-lg-4 col-lg-offset-4">
+			<input	type="text" maxlength="60" id="idNameProduct" class="form-control" />
 		</div>
-		<div id="divFormDiv" class="formDiv">
-			<button type="submit" id="idFindProduct">
-				<spring:message code="maintenance.generic.button.find" />
+		<br>
+		<br>
+		<div id="divFormDiv" class="formDiv col-lg-4 col-lg-offset-4">
+			<button type="submit" id="idFindProduct" class="btn btn-primary btn-lg btn_find_cj">
+				<spring:message code="maintenance.generic.button.find"/>
 			</button>
 		</div>
-		<div id="idShowError" class="lblmessagesred"></div>
+		<div id="idShowError" class="lblmessagesred col-lg-4 col-lg-offset-4"></div>
 		<input type="hidden" maxlength="60" id="idValueNameProduct" value="${nameProduct}" /> 
 		<input type="hidden" maxlength="60" id="idValueProduct" value="${productId}" />
 	</div>
@@ -36,11 +39,6 @@
 			<spring:message code="maintenance.type.product.list.empty" />
 		</c:if>
 		<c:if test="${listProduct!=null}">
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-lg-4 col-lg-offset-4"> -->
-<!-- 				<input type="search" id="search" value="" class="form-control" placeholder="Introduce un criterio de busqueda"> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
 		<div class="row">
 			<div class="col-lg-12">
 				<table class="table" id="table">
@@ -78,7 +76,7 @@
 	<div>
 		<c:if test="${listKardex==null && valueKardexList==1}">
 			<div id="divFormDiv" class="formDiv">
-				<button type="submit" id="idAddNewKardex">
+				<button type="submit" id="idAddNewKardex" class="btn btn-primary btn-lg btn_find_cj">
 					<spring:message code="register.kardex.button.new" />
 				</button>
 			</div>
@@ -90,7 +88,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<button type="button" id="idNewKardexDetail">
+				<button type="button" id="idNewKardexDetail" class="btn btn-primary btn-lg btn_find_cj">
 					<spring:message code="register.kardex.new.detail" />
 				</button>
 			</div>
@@ -154,62 +152,45 @@
 			<div id="typeMessagesFormKardex" class="lblmessagesred"></div>
 			<form id="idRegisterKardexForm">
 				<div id="divFormDiv" class="formDiv">
-					<table>
-						<tr>
-							<td><label class="labelForm"><spring:message code="register.kardex.type.operation" /></label></td>
-							<td>
-								<select id="idTypeOperation">
-									<option value="1"><spring:message code="register.kardex.type.operation.entry" />
-									<option value="2"><spring:message code="register.kardex.type.operation.egress" />
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div id="lblTypeOperation">
-									<label class="labelForm"><spring:message code="register.kardex.type.operation" /></label>
-								</div>
-							</td>
-							<td><input type="text" id="idCantidad" name="idCantidad"/></td>
-						</tr>
-						<tr>
-							<td>
-								<label class="labelForm"><spring:message code="register.kardex.comprobante.class" /></label>
-							</td>
-							<td>
-								<div id="idSelectEntrada" style="display: none">
-									<select id="idComprobanteClassEntrada">
-										<option value="Boleta Venta">Boleta Venta</option>
-										<option value="Factura">Factura</option>
-									</select>
-								</div>
-								<div id="idSelectSalida" style="display: none">
-									<select id="idComprobanteClassSalida">
-										<option value="Boleta Venta">Boleta Venta</option>
-										<option value="Informe">Informe</option>
-									</select>
-								</div>
-		<!-- 						<input type="text" id="idComprobanteClass" name="idComprobanteClass"/> -->
-							</td>
-						</tr>
-						<tr>
-							<td><label class="labelForm"><spring:message code="register.kardex.comprobante.number" /></label></td>
-							<td><input type="text" id="idComprobanteNumber" name="idComprobanteNumber"/></td>
-						</tr>
-						<tr>
-							<td><label class="labelForm"><spring:message code="register.kardex.comprobante.ticketNumber" /></label></td>
-							<td><input type="text" id="idComprobanteNumber" name="idComprobanteNumber"/></td>
-						</tr>
-						<tr>
-							<td>
-								<input type="hidden" id="idProductKardex" /> 
-								<input type="hidden" id="idDetailNameKardex" />
-								<input type="hidden" id="idKardexMaster"/>
-							</td>
-						</tr>
-					</table>
-		
-		
+					<label class="labelForm"><spring:message code="register.kardex.type.operation" /></label>
+					<select id="idTypeOperation" class="form-control">
+						<option value="1"><spring:message code="register.kardex.type.operation.entry" /></option>
+						<option value="2"><spring:message code="register.kardex.type.operation.egress" /></option>
+					</select>
+				</div>
+				<div id="divFormDiv" class="formDiv">
+					<div id="lblTypeOperation">
+						<label class="labelForm"><spring:message code="register.kardex.type.operation" /></label>
+					</div>
+					<input type="text" class="form-control"  id="idCantidad" name="idCantidad"/>
+				</div>
+				<div id="divFormDiv" class="formDiv">
+					<label class="labelForm"><spring:message code="register.kardex.comprobante.class" /></label>
+					<div id="idSelectEntrada" style="display: none">
+						<select id="idComprobanteClassEntrada"  class="form-control" >
+							<option value="Boleta Venta">Boleta Venta</option>
+							<option value="Factura">Factura</option>
+						</select>
+					</div>
+					<div id="idSelectSalida" style="display: none">
+						<select id="idComprobanteClassSalida"  class="form-control" >
+							<option value="Boleta Venta">Boleta Venta</option>
+							<option value="Informe">Informe</option>
+						</select>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label class="labelForm"><spring:message code="register.kardex.comprobante.number" /></label>
+						<input type="text"  class="form-control"  id="idComprobanteNumber" name="idComprobanteNumber"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<label class="labelForm"><spring:message code="register.kardex.comprobante.ticketNumber" /></label>
+						<input type="text"  class="form-control"  id="idComprobanteNumber" name="idComprobanteNumber"/>
+					</div>
+					<div id="divFormDiv" class="formDiv">
+						<input type="hidden" id="idProductKardex" /> 
+						<input type="hidden" id="idDetailNameKardex" />
+						<input type="hidden" id="idKardexMaster"/>
+					</div>
 				</div>
 			</form>
 			</div>
@@ -377,16 +358,11 @@
 	
 	function loadDetailKardex(response,nameProduct,priceTotalProduct,priceTotalSale,countTotalProduct) {
 		$("#idDetailKardexData").html(response);
-		$("#idNameProductDetail").html('<label class="labelFormDetail"><spring:message code="maintenance.type.product.name"/></label><label class="labelForm">'+nameProduct+'</label>');
-		$("#idSpanPriceTotalProduct").html('<label class="labelFormDetail"><spring:message code="price.total.product"/></label><label class="labelForm">'+priceTotalProduct+'</label>');
-		$("#idSpanPriceTotalSale").html('<label class="labelFormDetail"><spring:message code="price.total.sale"/></label><label class="labelForm"> '+priceTotalSale+'</label>');
-		$("#idCountProductTotal").html('<label class="labelFormDetail"><spring:message code="register.kardex.count.total"/></label><label class="labelForm"> '+countTotalProduct+'</label>');
+		$("#idNameProductDetail").html('<label class="labelFormDetail"><spring:message code="maintenance.type.product.name"/></label>&nbsp<span>'+nameProduct+'</span>');
+		$("#idSpanPriceTotalProduct").html('<label class="labelFormDetail"><spring:message code="price.total.product"/></label>&nbsp<span>'+priceTotalProduct+'</span>');
+		$("#idSpanPriceTotalSale").html('<label class="labelFormDetail"><spring:message code="price.total.sale"/></label>&nbsp<span>'+priceTotalSale+'</span>');
+		$("#idCountProductTotal").html('<label class="labelFormDetail"><spring:message code="register.kardex.count.total"/></label>&nbsp<span>'+countTotalProduct+'</span>');
 		$('#idDetailKardex').modal('show');
-// 		$("#idDetailKardex").dialog({
-// 			width : 978,
-// 			height : 321
-// 		});
-	
 	}
 
 	function loadNewKardex(idProduct, nameProduct,idKardex) {

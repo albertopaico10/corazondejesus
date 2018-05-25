@@ -11,7 +11,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<img style="width: 50%; height:7.5%" src="${pageContext.request.contextPath}/resources/images/logoFinalx3.jpg">
+			<!-- <img style="width: 50%; height:7.5%" src="${pageContext.request.contextPath}/resources/images/logoFinalx3.jpg"> -->
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">

@@ -28,6 +28,7 @@ import com.project.george.model.facade.TableNewPatientManager;
 import com.project.george.model.facade.TablePatientManager;
 
 @Controller
+@RequestMapping("/private/")
 public class ManteniencePatientController {
 	
 	@Autowired

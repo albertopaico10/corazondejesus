@@ -177,7 +177,7 @@ public class UtilMethods {
 		return age;
 	}
 	
-	public String convertFormatString(Date date,String formatTo){
+	public static String convertFormatString(Date date,String formatTo){
 		DateFormat df = new SimpleDateFormat(formatTo);
 		String returnDate = df.format(date);
 		return returnDate;

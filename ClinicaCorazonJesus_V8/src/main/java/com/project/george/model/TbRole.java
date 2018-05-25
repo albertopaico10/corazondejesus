@@ -23,6 +23,8 @@ public class TbRole implements Serializable {
 //	//bi-directional many-to-one association to TbUser
 //	@OneToMany(mappedBy="tbRole")
 //	private List<TbUser> tbUsers;
+	
+	private String userRole;
 
 	public TbRole() {
 	}
@@ -33,6 +35,14 @@ public class TbRole implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
 	}
 
 	public String getNombreRole() {

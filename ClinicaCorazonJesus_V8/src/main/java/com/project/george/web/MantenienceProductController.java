@@ -31,6 +31,7 @@ import com.project.george.model.facade.TablePresentationManager;
 import com.project.george.model.facade.TableProductManager;
 
 @Controller
+@RequestMapping("/private/")
 public class MantenienceProductController {
 	
 	@Autowired

@@ -20,7 +20,6 @@ import com.project.george.model.TbKardex;
 import com.project.george.model.TbPresentation;
 import com.project.george.model.TbProduct;
 import com.project.george.model.custom.dao.CustomTableProductDao;
-import com.project.george.model.custom.dao.CustomTableProductDaoImpl;
 import com.project.george.model.dao.TableDetailKardexDao;
 import com.project.george.model.dao.TableKardexDao;
 import com.project.george.model.dao.TableKardexDaoImpl;

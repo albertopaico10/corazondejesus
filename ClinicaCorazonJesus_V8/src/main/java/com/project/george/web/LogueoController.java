@@ -1,15 +1,13 @@
 package com.project.george.web;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.george.common.CommonUtil;
 import com.project.george.model.TbUser;
@@ -23,29 +21,30 @@ public class LogueoController {
 	@Autowired
 	TableUserManager tableUserMan;
 	
-	@RequestMapping("validateUser.htm")
-	public ModelAndView validateUserForm(
-			@ModelAttribute TbUser tableUserBean,
-			final BindingResult result, final SessionStatus status,
-			final HttpServletRequest request,final ModelMap model) {
-		System.out.println("Dentro de ValidateUserForm");
+	@RequestMapping(value = "validateUser.htm", method = RequestMethod.POST)
+	public String validateUserFormTest2(
+			@ModelAttribute TbUser tableUserBean, RedirectAttributes redirectAttributes,ModelMap model) {  
 		System.out.println("Datos : "+tableUserBean.getUserName()+" *** "+tableUserBean.getPassword());
-		TbUserDTO response=new TbUserDTO();
+		TbUserDTO tbUserDTO=new TbUserDTO();
 		try {
-			response=tableUserMan.validateUserAndPassword(tableUserBean.getUserName(), tableUserBean.getPassword());
-			if(!CommonUtil.Login.RESPONSE_LOGIN_CORRECT.equals(response.getResponse())){
+			tbUserDTO=tableUserMan.validateUserAndPassword(tableUserBean.getUserName(), tableUserBean.getPassword());
+			if(!CommonUtil.Login.RESPONSE_LOGIN_CORRECT.equals(tbUserDTO.getResponse())){
 				System.out.println("Dentro de responder Mensaje Incorrcto");
 				final TbUser tableUser=new TbUser();
 				model.addAttribute("loginUsuForm", tableUser);
-				request.setAttribute("messages", "USER_NOT_EXIST");
+				model.addAttribute("messages", "USER_NOT_EXIST");
+				return tbUserDTO.getResponse();
 			}
-			System.out.println("Response : "+response.getResponse());
 		} catch (Exception e) {
 			System.out.println("Error : "+e.toString());
-			request.setAttribute("messages", "ERROR");
+			model.addAttribute("messages", "ERROR");
 		}
-		return  new ModelAndView(response.getResponse(), "userObject", response);   
-	}
+		System.out.println("Dentro de ValidateUserForm");
+	    redirectAttributes.addFlashAttribute("loggedin", true);  
+	    redirectAttributes.addFlashAttribute("tbUserDTO", tbUserDTO);    
+	    return "redirect:/private/welcomePrivate.htm";    
+	}  
+	
 
 	@RequestMapping("logueo.htm")
 	public String initForm(final ModelMap model){

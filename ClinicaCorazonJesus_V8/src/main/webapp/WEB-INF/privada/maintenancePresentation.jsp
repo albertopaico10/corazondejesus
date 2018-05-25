@@ -100,7 +100,7 @@
 					<div id="divIdPresentation"></div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-default" id="savePresentation">
+					<button type="submit" class="btn btn-default btn_submit_modal" id="savePresentation">
 						<spring:message code="maintenance.botton.new.form" />
 					</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">

@@ -23,6 +23,7 @@ import com.project.george.model.facade.TableKardexManager;
 import com.project.george.model.facade.TableProductManager;
 
 @Controller
+@RequestMapping("/private/")
 public class RegisterKardexController {
 
 	@Autowired

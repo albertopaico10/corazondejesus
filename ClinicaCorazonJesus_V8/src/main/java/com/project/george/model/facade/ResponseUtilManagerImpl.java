@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.george.common.CommonUtil;
+import com.project.george.common.UtilMethods;
 import com.project.george.model.dto.TbDetailKardexDTO;
 import com.project.george.model.dto.TbKardexDTO;
 
@@ -76,7 +77,7 @@ public class ResponseUtilManagerImpl implements ResponseUtilManager {
 			else{
 				responseDetailKardex.append("<td class='"+classTable+"'>Salida</td>");
 			}
-			responseDetailKardex.append("<td class='"+classTable+"'>"+beanDetailForm.getDateCreated()+"</td>");
+			responseDetailKardex.append("<td class='"+classTable+"'>"+UtilMethods.convertFormatString(beanDetailForm.getDateCreated(), CommonUtil.FormatDate.MM_DD_YYYY)+"</td>");
 			responseDetailKardex.append("<td class='"+classTable+"'>"+beanDetailForm.getComprobanteClase()+"</td>");
 			responseDetailKardex.append("<td class='"+classTable+"'>"+beanDetailForm.getComprobanteNumero()+"</td>");			
 			if(!"1".equals(beanDetailForm.getTypeOperation())){
