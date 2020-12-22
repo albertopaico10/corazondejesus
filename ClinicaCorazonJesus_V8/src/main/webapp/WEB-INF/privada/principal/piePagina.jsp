@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/common/taglib.jsp"%>
 
-<section id="contact" style="background-color: D8D6D6;">
+<section id="contact" style="background-color: E2E8E6;">
 	<div class="container" >
 		<div class="row" >
 				<div class="col-lg-5 text-left">
@@ -8,7 +8,7 @@
 				</div>
 				<div class="col-lg-1 text-center"></div>
 				<div class="col-lg-4 text-left">
-					<p>&copy;2015 Clinica Corazón de Jesús. Todos los derechos reservados.</p>
+					<p>&copy;2020 Clinica Corazón de Jesús. Todos los derechos reservados.</p>
 				</div>
 		</div>
 	</div>

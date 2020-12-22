@@ -101,7 +101,7 @@ $('#btnOpenDialog').click(fnOpenNormalDialog);
 
 function callback(id,option) {
     if(option==2){
-    	document.location="${pageContext.request.contextPath}/deleteMaintenanceRole.htm?idRole="+id;
+    	document.location="${pageContext.request.contextPath}/private/deleteMaintenanceRole.htm?idRole="+id;
     }
 }
 

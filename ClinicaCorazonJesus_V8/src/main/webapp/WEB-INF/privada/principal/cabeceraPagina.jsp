@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/common/taglib.jsp"%>
 <!-- Navigation -->
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="background:#E2E8E6">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -11,7 +11,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<!-- <img style="width: 50%; height:7.5%" src="${pageContext.request.contextPath}/resources/images/logoFinalx3.jpg"> -->
+			<img style="width: 7%; height:auto" src="${pageContext.request.contextPath}/resources/images/logoCdJ.jpg">
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">

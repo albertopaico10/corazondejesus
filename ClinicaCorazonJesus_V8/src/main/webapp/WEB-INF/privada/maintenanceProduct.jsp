@@ -225,7 +225,7 @@ function updateProduct(idValue,nameProduct,idPresentation,price,priceSale,expira
 
 function callback(id,option) {
 	var id = $('#modalConfirm').data('id');
-	document.location="${pageContext.request.contextPath}/deleteMaintenanceProduct.htm?idProduct="+id;
+	document.location="${pageContext.request.contextPath}/private/deleteMaintenanceProduct.htm?idProduct="+id;
 	$('#modalConfirm').modal('hide');
 }
 </script>

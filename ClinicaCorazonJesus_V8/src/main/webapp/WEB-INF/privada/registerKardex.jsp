@@ -301,7 +301,7 @@
 			typeKardexOperation) {	
 		var nameProduct = $("#idValueNameProduct").val();
 		var idKardex = $("#idKardexMaster").val();
-		document.location = "${pageContext.request.contextPath}/saveKardexByProduct.htm?nameProduct="+nameProduct+"&productId="+ idProduct+ "&cantidad="+ valueCantidad+ "&comprobanteClase="+ valueComprobanteClase+"&comprobanteNumber=" + valueComprobanteNumber+"&idKardex="+idKardex+"&typeOperation="+valueSelectForm;
+		document.location = "${pageContext.request.contextPath}/private/saveKardexByProduct.htm?nameProduct="+nameProduct+"&productId="+ idProduct+ "&cantidad="+ valueCantidad+ "&comprobanteClase="+ valueComprobanteClase+"&comprobanteNumber=" + valueComprobanteNumber+"&idKardex="+idKardex+"&typeOperation="+valueSelectForm;
 	}
 
 	$("#idFindProduct").click(function(event) {
@@ -310,7 +310,7 @@
 		if(nameProduct==""){
 			$("#idShowError").html('<label class="labelForm"><spring:message code="validation.insert.one.criteria"/></label>');
 		}else{
-			document.location = "${pageContext.request.contextPath}/findProduct.htm?nameProduct="+ nameProduct;	
+			document.location = "${pageContext.request.contextPath}/private/findProduct.htm?nameProduct="+ nameProduct;	
 		}
 		
 	});
@@ -326,7 +326,7 @@
 	function listKardex(idProduct, nameProduct) {
 // 		alert("ID PRODUCT : "+idProduct);
 		var nameProduct = $("#idValueNameProduct").val();
-		document.location = "${pageContext.request.contextPath}/listKardexByProduct.htm?nameProduct="
+		document.location = "${pageContext.request.contextPath}/private/listKardexByProduct.htm?nameProduct="
 				+ nameProduct + "&productId=" + idProduct;
 		
 // 		$.ajax({
@@ -344,7 +344,7 @@
 
 	function listDetailKardex(idKardex, nameProduct,priceTotalProduct,priceTotalSale,countTotalProduct) {
 		$.ajax({
-			url : '${pageContext.request.contextPath}/listDetailKardex.htm',
+			url : '${pageContext.request.contextPath}/private/listDetailKardex.htm',
 			type : 'GET',
 			data : 'kardexId=' + idKardex,
 			success : function(response) {

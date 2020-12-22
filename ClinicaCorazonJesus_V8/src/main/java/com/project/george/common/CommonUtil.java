@@ -21,31 +21,31 @@ public class CommonUtil {
 	
 	public class MantenienceRoles{
 		public static final String RESPONSE_MANTENIENCE_ROLE="maintenanceRoles";
-		public static final String RESPONSE_MANTENIENCE_ROLE_NEW="redirect:/listMaintenanceRoles.htm";
+		public static final String RESPONSE_MANTENIENCE_ROLE_NEW="redirect:/private/listMaintenanceRoles.htm";
 	}
 	
 	public class MantenienceArea{
 		public static final String RESPONSE_MANTENIENCE_AREA="maintenanceArea";
-		public static final String RESPONSE_MANTENIENCE_AREA_NEW="redirect:/listArea.htm";
+		public static final String RESPONSE_MANTENIENCE_AREA_NEW="redirect:/private/listArea.htm";
 	}
 	
 	public class ManteniencePresentation{
 		public static final String RESPONSE_MANTENIENCE_PRESENTENTION="maintenancePresentation";
-		public static final String RESPONSE_MANTENIENCE_PRESENTATION_NEW="redirect:/listPresentation.htm";
+		public static final String RESPONSE_MANTENIENCE_PRESENTATION_NEW="redirect:/private/listPresentation.htm";
 	}
 
 	public class MantenienceProduct{
 		public static final String RESPONSE_MANTENIENCE_PRODUCT="maintenanceProduct";
-		public static final String RESPONSE_MANTENIENCE_PRODUCT_NEW="redirect:/listProduct.htm";
+		public static final String RESPONSE_MANTENIENCE_PRODUCT_NEW="redirect:/private/listProduct.htm";
 	}
 	
 	public class ManteniencePatient{
 		public static final String RESPONSE_MANTENIENCE_PATIENT="maintenancePatient";
-		public static final String RESPONSE_MANTENIENCE_PATIENT_NEW="redirect:/listMaintenancePatient.htm";
+		public static final String RESPONSE_MANTENIENCE_PATIENT_NEW="redirect:/private/listMaintenancePatient.htm";
 	}
 	public class MantenienceNewPatient{
 		public static final String RESPONSE_MANTENIENCE_PATIENT="maintenancePatient";
-		public static final String RESPONSE_MANTENIENCE_PATIENT_NEW="redirect:/listMaintenancePatient.htm";
+		public static final String RESPONSE_MANTENIENCE_PATIENT_NEW="redirect:/private/listMaintenancePatient.htm";
 	}
 	public class FormatDate{
 		public static final String YYYY_MM_DD_HHMMSS="YYYY-MM-DD HH:mm:ss";

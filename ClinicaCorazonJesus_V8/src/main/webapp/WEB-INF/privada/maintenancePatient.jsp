@@ -370,7 +370,7 @@
 	
 	function deletePantient() {
 	    var id =  $('#idPatient').val();
-	    document.location="${pageContext.request.contextPath}/deleteMaintenancePatient.htm?idPatient="+id;
+	    document.location="${pageContext.request.contextPath}/private/deleteMaintenancePatient.htm?idPatient="+id;
 	    $('#modalConfirm').modal('hide');
 	}
 

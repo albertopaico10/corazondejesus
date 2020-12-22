@@ -159,7 +159,7 @@ function updatePresentation(idPresentation,namePresentation){
 
 function deletePresentation() {
     var id = $('#modalConfirm').data('id');
-    document.location="${pageContext.request.contextPath}/deleteMaintenancePresentation.htm?idPresentation="+id;
+    document.location="${pageContext.request.contextPath}/private/deleteMaintenancePresentation.htm?idPresentation="+id;
     $('#modalConfirm').modal('hide');
 }
 </script>

@@ -109,7 +109,7 @@ $('#btnOpenDialog').click(fnOpenNormalDialog);
 
 function callback(id,option) {
     if(option==2){
-    	document.location="${pageContext.request.contextPath}/deleteMaintenanceArea.htm?idArea="+id;
+    	document.location="${pageContext.request.contextPath}/private/deleteMaintenanceArea.htm?idArea="+id;
     }
 }
 </script>
